@@ -23,9 +23,21 @@ var methods = function() {
     name: "declareCandidacy",
     call: "stake_declareCandidacy",
     params: 1,
-    inputFormatter: [formatters.inputDeclareCandidacyFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
-  return [declareCandidacy]
+  var delegate = new Method({
+    name: "delegate",
+    call: "stake_delegate",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
+  var unbond = new Method({
+    name: "unbond",
+    call: "stake_bond",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
+  return [declareCandidacy, delegate, unbond]
 }
 
 var properties = function() {

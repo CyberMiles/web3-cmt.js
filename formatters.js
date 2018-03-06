@@ -1,7 +1,7 @@
 const formatters = require("web3/lib/web3/formatters")
 const utils = require("web3/lib/utils/utils")
 
-inputDeclareCandidacyFormatter = function(options) {
+inputStakeTxFormatter = function(options) {
   if (options.from) {
     options.from = formatters.inputAddressFormatter(options.from)
   }
@@ -11,5 +11,5 @@ inputDeclareCandidacyFormatter = function(options) {
 
 module.exports = {
   formatters,
-  inputDeclareCandidacyFormatter
+  inputStakeTxFormatter
 }
