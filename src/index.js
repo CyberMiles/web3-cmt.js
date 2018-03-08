@@ -1,11 +1,14 @@
 const Web3 = require("web3")
-const Cmt = require("./cmt.js")
-const Stake = require("./stake.js")
+var version = require("./version.json")
+const Cmt = require("./web3/methods/cmt.js")
+const Stake = require("./web3/methods/stake.js")
 
 const MyWeb3 = function(provider) {
   Web3.call(this, provider)
 
   this.cmt = new Cmt(this)
+  this.cmt.version = version.version
+
   this.stake = new Stake(this)
   delete this.eth
 }
