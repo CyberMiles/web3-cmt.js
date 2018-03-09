@@ -32,7 +32,14 @@ var methods = function() {
     call: "cmt_getTransaction",
     params: 1
   })
-  return [getBlock, getTransaction]
+
+  var getTransactionFromBlock = new Method({
+    name: "getTransactionFromBlock",
+    call: "cmt_getTransactionFromBlock",
+    params: 2
+  })
+
+  return [getBlock, getTransaction, getTransactionFromBlock]
 }
 
 module.exports = Cmt
