@@ -9,7 +9,15 @@ inputStakeTxFormatter = function(options) {
   return options
 }
 
+inputDefaultHeightFormatter = function(height) {
+  if (height === undefined) {
+    return 0
+  }
+  return height
+}
+
 module.exports = {
   formatters,
-  inputStakeTxFormatter
+  inputStakeTxFormatter,
+  inputDefaultHeightFormatter
 }
