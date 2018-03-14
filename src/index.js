@@ -1,5 +1,5 @@
 const Web3 = require("web3")
-var version = require("./version.json")
+const version = require("./version.json")
 const Cmt = require("./web3/methods/cmt.js")
 const Stake = require("./web3/methods/stake.js")
 
