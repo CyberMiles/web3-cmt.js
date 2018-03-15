@@ -1,3 +1,12 @@
 language: node_js
 node_js:
   - "8"
+services:
+  - docker
+cache:
+   directories:
+     - node_modules
+script:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker build -t "ywonline/web3-cmt:latest" -f test/Dockerfile .
+  - docker push "ywonline/web3-cmt:latest"

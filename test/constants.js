@@ -1,6 +1,6 @@
 module.exports = Object.freeze({
   Settings: {
-    Provider: "http://localhost:8545",
+    Provider: "http://node-1:8545",
     BlockTicker: 1000
   },
   Wallet: [
@@ -16,6 +16,6 @@ module.exports = Object.freeze({
     }
   ],
   Validators: [
-    "265D2717B3F7ADE8EEF10CB916C40A9878448127063A57FEE8A603F7FA60A119"
+    "265E7192FFD4EA4CB1F11A5E0F6BE110CB1E89782642E04F2DE09A3C12A157A5"
   ]
 })

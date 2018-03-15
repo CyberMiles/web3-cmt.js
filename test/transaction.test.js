@@ -1,5 +1,5 @@
 const expect = require("chai").expect
-const Web3 = require("web3-cmt")
+const Web3 = require("../src/index")
 const { Settings, Wallet } = require("./constants")
 
 let web3

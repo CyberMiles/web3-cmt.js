@@ -4,7 +4,7 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "smoke": "mocha test/**/*.test.js"
+    "smoke": "mocha -t 10000 test/**/*.test.js"
   },
   "repository": {
     "type": "git",
