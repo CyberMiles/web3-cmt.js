@@ -20,32 +20,38 @@ var Stake = function(web3) {
 
 var methods = function() {
   var declareCandidacy = new Method({
-    name: "declareCandidacy",
+    name: "declare",
     call: "stake_declareCandidacy",
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
-  var bind = new Method({
-    name: "bind",
-    call: "stake_delegate",
+  var withdrawCandidacy = new Method({
+    name: "withdraw",
+    call: "stake_withdrawCandidacy",
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
-  var unbind = new Method({
-    name: "unbind",
-    call: "stake_unbond",
+  var proposeSlot = new Method({
+    name: "proposeSlot",
+    call: "stake_proposeSlot",
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
-  var getCandidates = new Method({
-    name: "getCandidates",
-    call: "stake_queryCandidates",
+  var acceptSlot = new Method({
+    name: "acceptSlot",
+    call: "stake_acceptSlot",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
+  var withdrawSlot = new Method({
+    name: "withdrawSlot",
+    call: "stake_withdrawSlot",
     params: 1,
     inputFormatter: [formatters.inputDefaultHeightFormatter]
   })
-  var getValidators = new Method({
-    name: "getValidators",
-    call: "stake_queryValidators",
+  var cancelSlot = new Method({
+    name: "cancelSlot",
+    call: "stake_cancelSlot",
     params: 1,
     inputFormatter: [null]
   })
@@ -76,13 +82,11 @@ var methods = function() {
   })
   return [
     declareCandidacy,
-    bind,
-    unbind,
-    getCandidates,
-    getValidators,
-    getCandidate,
-    getDelegatorBind,
-    getDelegatorCandidates
+    withdrawCandidacy,
+    proposeSlot,
+    acceptSlot,
+    withdrawSlot,
+    cancelSlot
   ]
 }
 
