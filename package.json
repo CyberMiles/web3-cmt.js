@@ -4,7 +4,7 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "smoke": "mocha -t 30000 test/**/*.test.js"
+    "smoke": "mocha -t 300000 test/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,9 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "async": "^2.6.0",
     "chai": "^4.1.2",
-    "mocha": "^5.0.4"
+    "mocha": "^5.0.4",
+    "winston": "^2.4.1"
   }
 }

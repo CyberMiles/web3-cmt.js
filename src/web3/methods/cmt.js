@@ -10,7 +10,7 @@ const Cmt = function(web3) {
     console.log("run testFunc")
   }
 
-  var self = this
+  let self = this
   methods().forEach(function(method) {
     method.attachToObject(self)
     method.setRequestManager(self._requestManager)
@@ -20,20 +20,20 @@ const Cmt = function(web3) {
 Cmt.prototype = Object.create(Eth.prototype)
 Cmt.prototype.constructor = Cmt
 
-var methods = function() {
-  var getBlock = new Method({
+let methods = function() {
+  let getBlock = new Method({
     name: "getBlock",
     call: "cmt_getBlock",
     params: 1
   })
 
-  var getTransaction = new Method({
+  let getTransaction = new Method({
     name: "getTransaction",
     call: "cmt_getTransaction",
     params: 1
   })
 
-  var getTransactionFromBlock = new Method({
+  let getTransactionFromBlock = new Method({
     name: "getTransactionFromBlock",
     call: "cmt_getTransactionFromBlock",
     params: 2

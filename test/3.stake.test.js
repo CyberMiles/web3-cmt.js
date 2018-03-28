@@ -1,16 +1,17 @@
 const expect = require("chai").expect
-const { Settings, Wallet, Validators } = require("./constants")
-require("./helper")
+const { Settings, Validators } = require("./constants")
+const Utils = require("./global_hooks")
 
 describe.skip("Stake Test", function() {
-  before(function() {
-    web3.personal.unlockAccount(Wallet[0].Addr, Wallet[0].Password)
+  beforeEach(function() {
+    // unlock accounts
+    web3.personal.unlockAccount(accounts[0], Settings.Passphrase)
   })
 
   describe("Declare Candidacy", function() {
     it("for an existing initial validator account — fail", function() {
       let payload = {
-        from: Wallet[0].Addr,
+        from: accounts[0],
         pubKey: Validators[0]
       }
       let r = web3.stake.declare(payload)
@@ -23,7 +24,7 @@ describe.skip("Stake Test", function() {
     })
     it("Declare candidacy for on new node and the new account A", function() {
       let payload = {
-        from: Wallet[0].Addr,
+        from: accounts[0],
         pubKey: Validators[0]
       }
       let r = web3.stake.declare(payload)
@@ -39,7 +40,7 @@ describe.skip("Stake Test", function() {
   describe("Propose Slot", function() {
     it("Candidate node offers a slot", function() {
       let payload = {
-        from: Wallet[0].Addr,
+        from: accounts[0],
         pubKey: Validators[0],
         amount: 5,
         proposedRoi: 1
@@ -57,7 +58,7 @@ describe.skip("Stake Test", function() {
   describe("Accept Slot", function() {
     it("Account B stakes candidate — candidate becomes validator, and account A receives block awards", function() {
       let payload = {
-        from: Wallet[0].Addr,
+        from: accounts[0],
         amount: 5,
         slotId: "slotId"
       }
@@ -74,7 +75,7 @@ describe.skip("Stake Test", function() {
   describe("Withdraw Slot", function() {
     it("Account B unbind candidate — candidate is no longer a validator", function() {
       let payload = {
-        from: Wallet[0].Addr,
+        from: accounts[0],
         amount: 5,
         slotId: "slotId"
       }
