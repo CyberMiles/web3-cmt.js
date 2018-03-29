@@ -35,11 +35,11 @@ const tokenJSON = JSON.parse(fs.readFileSync(tokenFile).toString())
 const abi = tokenJSON["abi"]
 const bytecode = tokenJSON["bytecode"]
 
-const newContract = function(deployAdrress, cb) {
+const newContract = function(deployAddress, cb) {
   let tokenContract = web3.cmt.contract(abi)
   tokenContract.new(
     {
-      from: deployAdrress,
+      from: deployAddress,
       data: bytecode,
       gas: "4700000"
     },
@@ -70,6 +70,14 @@ const tokenTransfer = function(f, t, v, gasPrice) {
   logger.debug("token transfer hash: ", hash)
   // check hash
   expect(hash).to.not.empty
+  return hash
+}
+
+const tokenKill = deployAdrress => {
+  let tokenContract = web3.cmt.contract(abi)
+  let tokenInstance = tokenContract.at(contractAddress)
+  let hash = tokenInstance.kill({ from: deployAdrress })
+  logger.debug("token kill hash: ", hash)
   return hash
 }
 
@@ -125,6 +133,7 @@ module.exports = {
   getBalance,
   newContract,
   tokenTransfer,
+  tokenKill,
   getTokenBalance,
   waitInterval,
   waitMultiple

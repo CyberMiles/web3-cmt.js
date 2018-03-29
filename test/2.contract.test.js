@@ -195,5 +195,26 @@ describe("Contract Test", function() {
     })
   })
 
-  describe.skip("Destroy the contract", function() {})
+  describe("Destroy the contract", function() {
+    it("expect all to succeed", function(done) {
+      let deployAdrress = web3.cmt.accounts[0]
+      web3.personal.unlockAccount(deployAdrress, Settings.Passphrase)
+      let hash = Utils.tokenKill(deployAdrress)
+
+      Utils.waitInterval(hash, (err, res) => {
+        expect(err).to.be.null
+        expect(res).to.be.not.null
+
+        // balance after
+        token_balance_new = Utils.getTokenBalance()
+        for (i = 0; i < 4; ++i) {
+          expect(token_balance_new[i].toNumber()).to.eq(0)
+        }
+        // check code
+        expect(web3.cmt.getCode(contractAddress)).to.eq("0x")
+
+        done()
+      })
+    })
+  })
 })

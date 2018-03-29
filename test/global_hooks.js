@@ -41,8 +41,8 @@ before("Setup a ERC20 Smart contract called ETH", function(done) {
   // check if contract already exists
   let first = "b6b29ef90120bec597939e0eda6b8a9164f75deb"
   if (web3.cmt.getCode(first) === "0x") {
-    let deployAdrress = web3.cmt.accounts[0]
-    Utils.newContract(deployAdrress, addr => {
+    let deployAddress = web3.cmt.accounts[0]
+    Utils.newContract(deployAddress, addr => {
       contractAddress = addr
       done()
     })
