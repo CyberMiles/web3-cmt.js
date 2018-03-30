@@ -130,10 +130,11 @@ describe("Transaction Test", function() {
 
   describe("Send free CMT TX from A to B 3 times within 10s", function() {
     it("expect only the first one will succeed", function(done) {
-      let times = 3,
-        arrHash = []
+      let arrHash = [],
+        times = 3
+      let nonce = web3.cmt.getTransactionCount(accounts[0])
       for (i = 0; i < times; ++i) {
-        let hash = Utils.transfer(accounts[0], accounts[1], value)
+        let hash = Utils.transfer(accounts[0], accounts[1], value, 0, nonce++)
         arrHash.push(hash)
       }
 
@@ -164,8 +165,15 @@ describe("Transaction Test", function() {
     it("expect all to succeed", function(done) {
       let arrHash = [],
         times = 3
+      let nonce = web3.cmt.getTransactionCount(accounts[0])
       for (i = 0; i < times; ++i) {
-        let hash = Utils.transfer(accounts[0], accounts[1], value, gasPrice)
+        let hash = Utils.transfer(
+          accounts[0],
+          accounts[1],
+          value,
+          gasPrice,
+          nonce
+        )
         arrHash.push(hash)
       }
 

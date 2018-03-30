@@ -73,10 +73,6 @@ before("Transfer 1000 CMT to A, B, C, D from defaultAccount", function(done) {
     Utils.waitMultiple(
       arrFund,
       () => {
-        // arrFund.forEach(hash => {
-        //   let receipt = web3.cmt.getTransactionReceipt(hash)
-        //   expect(receipt).to.not.be.null
-        // })
         Utils.getBalance()
         done()
       },
@@ -108,10 +104,6 @@ before("Transfer 1000 ETH to A, B, C, D from defaultAccount", function(done) {
     Utils.waitMultiple(
       arrFund,
       () => {
-        // arrFund.forEach(hash => {
-        //   let receipt = web3.cmt.getTransactionReceipt(hash)
-        //   expect(receipt).to.not.be.null
-        // })
         Utils.getTokenBalance()
         done()
       },

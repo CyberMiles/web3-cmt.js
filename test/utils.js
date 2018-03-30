@@ -4,13 +4,14 @@ const async = require("async")
 const logger = require("./logger")
 const { Settings } = require("./constants")
 
-const transfer = (f, t, v, gasPrice) => {
+const transfer = (f, t, v, gasPrice, nonce) => {
   let payload = {
     from: f,
     to: t,
     value: web3.toWei(v, "gwei"),
     gasPrice: web3.toWei(gasPrice || 0, "gwei")
   }
+  if (nonce) payload.nonce = nonce
   let hash = web3.cmt.sendTransaction(payload)
   logger.debug(`transfer ${v} gwei from ${f} to ${t}, hash: ${hash}`)
   // check hash
@@ -59,13 +60,14 @@ const newContract = function(deployAddress, cb) {
   )
 }
 
-const tokenTransfer = function(f, t, v, gasPrice) {
+const tokenTransfer = function(f, t, v, gasPrice, nonce) {
   let tokenContract = web3.cmt.contract(abi)
   let tokenInstance = tokenContract.at(contractAddress)
   let option = {
     from: f,
     gasPrice: web3.toWei(gasPrice || 0, "gwei")
   }
+  if (nonce) option.nonce = nonce
   let hash = tokenInstance.transfer.sendTransaction(t, v, option)
   logger.debug("token transfer hash: ", hash)
   // check hash
