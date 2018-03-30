@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/CyberMiles/web3-cmt.js.svg?branch=master)](https://travis-ci.org/CyberMiles/web3-cmt.js)
 
 ```bash
-git lone https://github.com/CyberMiles/web3-cmt.js.git
+git clone https://github.com/CyberMiles/web3-cmt.js.git
 cd web3-cmt.js
 yarn install
 ```
