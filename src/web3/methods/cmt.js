@@ -1,5 +1,6 @@
 var Eth = require("web3/lib/web3/methods/eth")
 var Method = require("web3/lib/web3/method")
+var utils = require("web3/lib/utils/utils")
 var formatters = require("../formatters")
 
 // inherit and extend Eth
@@ -7,16 +8,23 @@ var Cmt = function(web3) {
   Eth.call(this, web3)
 
   var self = this
-  // methods().forEach(function(method) {
-  //   method.attachToObject(self)
-  //   method.setRequestManager(self._requestManager)
-  // })
+  methods().forEach(function(method) {
+    method.attachToObject(self)
+    method.setRequestManager(self._requestManager)
+  })
 }
 
 Cmt.prototype = Object.create(Eth.prototype)
 Cmt.prototype.constructor = Cmt
 
 var methods = function() {
+  var getSequence = new Method({
+    name: "getSequence",
+    call: "cmt_getSequence",
+    params: 1,
+    outputFormatter: utils.toDecimal
+  })
+
   var getBlock = new Method({
     name: "getBlock",
     call: "cmt_getBlock",
@@ -35,7 +43,7 @@ var methods = function() {
     params: 2
   })
 
-  return [getBlock, getTransaction, getTransactionFromBlock]
+  return [getSequence]
 }
 
 module.exports = Cmt

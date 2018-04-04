@@ -45,7 +45,7 @@ describe.skip("Stake Test", function() {
       // unlock account
       web3.personal.unlockAccount(acc, Settings.Passphrase)
       // get sequence
-      sequences.push(web3.stake.getSequence(acc) + 1)
+      sequences.push(web3.cmt.getSequence(acc) + 1)
     })
     // get existing validators
     let result = web3.stake.queryValidators()
