@@ -1,7 +1,7 @@
-const utils = require("web3/lib/utils/utils")
-const Property = require("web3/lib/web3/property")
-const Method = require("web3/lib/web3/method")
-const formatters = require("../formatters")
+var utils = require("web3/lib/utils/utils")
+var Property = require("web3/lib/web3/property")
+var Method = require("web3/lib/web3/method")
+var formatters = require("../formatters")
 
 var Stake = function(web3) {
   this._requestManager = web3._requestManager

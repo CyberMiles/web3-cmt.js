@@ -1,9 +1,9 @@
-const Web3 = require("web3")
-const version = require("./version.json")
-const Cmt = require("./web3/methods/cmt.js")
-const Stake = require("./web3/methods/stake.js")
+var Web3 = require("web3")
+var version = require("./version.json")
+var Cmt = require("./web3/methods/cmt.js")
+var Stake = require("./web3/methods/stake.js")
 
-const MyWeb3 = function(provider) {
+var MyWeb3 = function(provider) {
   Web3.call(this, provider)
 
   this.cmt = new Cmt(this)

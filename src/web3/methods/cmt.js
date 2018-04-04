@@ -1,12 +1,12 @@
-const Eth = require("web3/lib/web3/methods/eth")
-const Method = require("web3/lib/web3/method")
-const formatters = require("../formatters")
+var Eth = require("web3/lib/web3/methods/eth")
+var Method = require("web3/lib/web3/method")
+var formatters = require("../formatters")
 
 // inherit and extend Eth
-const Cmt = function(web3) {
+var Cmt = function(web3) {
   Eth.call(this, web3)
 
-  let self = this
+  var self = this
   // methods().forEach(function(method) {
   //   method.attachToObject(self)
   //   method.setRequestManager(self._requestManager)
@@ -16,20 +16,20 @@ const Cmt = function(web3) {
 Cmt.prototype = Object.create(Eth.prototype)
 Cmt.prototype.constructor = Cmt
 
-let methods = function() {
-  let getBlock = new Method({
+var methods = function() {
+  var getBlock = new Method({
     name: "getBlock",
     call: "cmt_getBlock",
     params: 1
   })
 
-  let getTransaction = new Method({
+  var getTransaction = new Method({
     name: "getTransaction",
     call: "cmt_getTransaction",
     params: 1
   })
 
-  let getTransactionFromBlock = new Method({
+  var getTransactionFromBlock = new Method({
     name: "getTransactionFromBlock",
     call: "cmt_getTransactionFromBlock",
     params: 2

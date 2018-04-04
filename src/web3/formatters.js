@@ -1,5 +1,5 @@
-const formatters = require("web3/lib/web3/formatters")
-const utils = require("web3/lib/utils/utils")
+var formatters = require("web3/lib/web3/formatters")
+var utils = require("web3/lib/utils/utils")
 
 inputDefaultHeightFormatter = function(height) {
   if (height === undefined) {
@@ -9,6 +9,6 @@ inputDefaultHeightFormatter = function(height) {
 }
 
 module.exports = {
-  formatters,
-  inputDefaultHeightFormatter
+  formatters: formatters,
+  inputDefaultHeightFormatter: inputDefaultHeightFormatter
 }
