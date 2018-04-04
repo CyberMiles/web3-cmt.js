@@ -10,7 +10,7 @@ const MyWeb3 = function(provider) {
   this.cmt.version = version.version
 
   this.stake = new Stake(this)
-  // delete this.eth
+  delete this.eth
 }
 
 MyWeb3.providers = Web3.providers

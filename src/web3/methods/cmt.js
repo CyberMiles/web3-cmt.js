@@ -6,15 +6,11 @@ const formatters = require("../formatters")
 const Cmt = function(web3) {
   Eth.call(this, web3)
 
-  this.testFunc = function() {
-    console.log("run testFunc")
-  }
-
   let self = this
-  methods().forEach(function(method) {
-    method.attachToObject(self)
-    method.setRequestManager(self._requestManager)
-  })
+  // methods().forEach(function(method) {
+  //   method.attachToObject(self)
+  //   method.setRequestManager(self._requestManager)
+  // })
 }
 
 Cmt.prototype = Object.create(Eth.prototype)

@@ -19,61 +19,84 @@ var Stake = function(web3) {
 }
 
 var methods = function() {
+  var getSequence = new Method({
+    name: "getSequence",
+    call: "stake_getSequence",
+    params: 1,
+    outputFormatter: utils.toDecimal
+  })
   var declareCandidacy = new Method({
-    name: "declare",
+    name: "declareCandidacy",
     call: "stake_declareCandidacy",
     params: 1,
-    inputFormatter: [formatters.inputStakeTxFormatter]
+    inputFormatter: [formatters.inputTransactionFormatter]
   })
   var withdrawCandidacy = new Method({
-    name: "withdraw",
+    name: "withdrawCandidacy",
     call: "stake_withdrawCandidacy",
     params: 1,
-    inputFormatter: [formatters.inputStakeTxFormatter]
+    inputFormatter: [formatters.inputTransactionFormatter]
+  })
+  var editCandidacy = new Method({
+    name: "editCandidacy",
+    call: "stake_editCandidacy",
+    params: 1,
+    inputFormatter: [formatters.inputTransactionFormatter]
   })
   var proposeSlot = new Method({
     name: "proposeSlot",
     call: "stake_proposeSlot",
     params: 1,
-    inputFormatter: [formatters.inputStakeTxFormatter]
+    inputFormatter: [formatters.inputTransactionFormatter]
   })
   var acceptSlot = new Method({
     name: "acceptSlot",
     call: "stake_acceptSlot",
     params: 1,
-    inputFormatter: [formatters.inputStakeTxFormatter]
+    inputFormatter: [formatters.inputTransactionFormatter]
   })
   var withdrawSlot = new Method({
     name: "withdrawSlot",
     call: "stake_withdrawSlot",
     params: 1,
-    inputFormatter: [formatters.inputDefaultHeightFormatter]
+    inputFormatter: [formatters.inputTransactionFormatter]
   })
   var cancelSlot = new Method({
     name: "cancelSlot",
     call: "stake_cancelSlot",
     params: 1,
-    inputFormatter: [null]
+    inputFormatter: [formatters.inputTransactionFormatter]
   })
-  var getCandidate = new Method({
-    name: "getCandidate",
-    call: "stake_queryCandidate",
+  var queryValidators = new Method({
+    name: "queryValidators",
+    call: "stake_queryValidators",
+    params: 1,
+    inputFormatter: [formatters.inputDefaultHeightFormatter]
+  })
+  var queryValidator = new Method({
+    name: "queryValidator",
+    call: "stake_queryValidtor",
     params: 2,
-    inputFormatter: [null, formatters.inputDefaultHeightFormatter]
-  })
-  var getDelegatorBind = new Method({
-    name: "getDelegatorBind",
-    call: "stake_queryDelegatorBond",
-    params: 3,
     inputFormatter: [
       formatters.inputAddressFormatter,
-      null,
       formatters.inputDefaultHeightFormatter
     ]
   })
-  var getDelegatorCandidates = new Method({
-    name: "getDelegatorCandidates",
-    call: "stake_queryDelegatorCandidates",
+  var querySlots = new Method({
+    name: "querySlots",
+    call: "stake_querySlots",
+    params: 1,
+    inputFormatter: [formatters.inputDefaultHeightFormatter]
+  })
+  var querySlot = new Method({
+    name: "querySlot",
+    call: "stake_querySlot",
+    params: 2,
+    inputFormatter: [null, formatters.inputDefaultHeightFormatter]
+  })
+  var queryDelegators = new Method({
+    name: "queryDelegator",
+    call: "stake_queryDelegator",
     params: 2,
     inputFormatter: [
       formatters.inputAddressFormatter,
@@ -81,12 +104,19 @@ var methods = function() {
     ]
   })
   return [
+    getSequence,
     declareCandidacy,
     withdrawCandidacy,
+    editCandidacy,
     proposeSlot,
     acceptSlot,
     withdrawSlot,
-    cancelSlot
+    cancelSlot,
+    queryValidators,
+    queryValidator,
+    querySlots,
+    querySlot,
+    queryDelegators
   ]
 }
 
