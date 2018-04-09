@@ -13546,11 +13546,6 @@ module.exports = transfer;
 module.exports = XMLHttpRequest;
 
 },{}],87:[function(require,module,exports){
-module.exports={
-  "version": "0.0.1"
-}
-
-},{}],88:[function(require,module,exports){
 var formatters = require("web3/lib/web3/formatters")
 var utils = require("web3/lib/utils/utils")
 
@@ -13566,7 +13561,7 @@ module.exports = {
   inputDefaultHeightFormatter: inputDefaultHeightFormatter
 }
 
-},{"web3/lib/utils/utils":56,"web3/lib/web3/formatters":66}],89:[function(require,module,exports){
+},{"web3/lib/utils/utils":56,"web3/lib/web3/formatters":66}],88:[function(require,module,exports){
 var Eth = require("web3/lib/web3/methods/eth")
 var Method = require("web3/lib/web3/method")
 var utils = require("web3/lib/utils/utils")
@@ -13617,7 +13612,7 @@ var methods = function() {
 
 module.exports = Cmt
 
-},{"../formatters":88,"web3/lib/utils/utils":56,"web3/lib/web3/method":72,"web3/lib/web3/methods/eth":74}],90:[function(require,module,exports){
+},{"../formatters":87,"web3/lib/utils/utils":56,"web3/lib/web3/method":72,"web3/lib/web3/methods/eth":74}],89:[function(require,module,exports){
 var utils = require("web3/lib/utils/utils")
 var Property = require("web3/lib/web3/property")
 var Method = require("web3/lib/web3/method")
@@ -13739,7 +13734,109 @@ var properties = function() {
 
 module.exports = Stake
 
-},{"../formatters":88,"web3/lib/utils/utils":56,"web3/lib/web3/method":72,"web3/lib/web3/property":81}],"bignumber.js":[function(require,module,exports){
+},{"../formatters":87,"web3/lib/utils/utils":56,"web3/lib/web3/method":72,"web3/lib/web3/property":81}],90:[function(require,module,exports){
+var BigNumber = require("bignumber.js")
+var utils = require("web3/lib/utils/utils")
+
+// override web3.fromWei/toWei, add cmt units
+var unitMap = {
+  noether: "0",
+  wei: "1",
+  kwei: "1000",
+  Kwei: "1000",
+  babbage: "1000",
+  femtoether: "1000",
+  mwei: "1000000",
+  Mwei: "1000000",
+  lovelace: "1000000",
+  picoether: "1000000",
+  gwei: "1000000000",
+  Gwei: "1000000000",
+  shannon: "1000000000",
+  nanoether: "1000000000",
+  nano: "1000000000",
+  szabo: "1000000000000",
+  microether: "1000000000000",
+  micro: "1000000000000",
+  finney: "1000000000000000",
+  milliether: "1000000000000000",
+  milli: "1000000000000000",
+  ether: "1000000000000000000",
+  kether: "1000000000000000000000",
+  grand: "1000000000000000000000",
+  mether: "1000000000000000000000000",
+  gether: "1000000000000000000000000000",
+  tether: "1000000000000000000000000000000",
+  cmt: "1000000000000000000",
+  kcmt: "1000000000000000000000",
+  mcmt: "1000000000000000000000000",
+  gcmt: "1000000000000000000000000000",
+  tcmt: "1000000000000000000000000000000"
+}
+
+var getValueOfUnit = function(unit) {
+  unit = unit ? unit.toLowerCase() : "ether"
+  var unitValue = unitMap[unit]
+  if (unitValue === undefined) {
+    throw new Error(
+      "This unit doesn't exists, please use the one of the following units" +
+        JSON.stringify(unitMap, null, 2)
+    )
+  }
+  return new BigNumber(unitValue, 10)
+}
+
+var fromWei = function(number, unit) {
+  var returnValue = utils.toBigNumber(number).dividedBy(getValueOfUnit(unit))
+
+  return utils.isBigNumber(number) ? returnValue : returnValue.toString(10)
+}
+
+var toWei = function(number, unit) {
+  var returnValue = utils.toBigNumber(number).times(getValueOfUnit(unit))
+
+  return utils.isBigNumber(number) ? returnValue : returnValue.toString(10)
+}
+
+module.exports = {
+  fromWei: fromWei,
+  toWei: toWei
+}
+
+},{"bignumber.js":"bignumber.js","web3/lib/utils/utils":56}],91:[function(require,module,exports){
+module.exports={
+  "version": "0.0.1"
+}
+
+},{}],92:[function(require,module,exports){
+var Web3 = require("web3")
+
+var version = require("./version.json")
+var Cmt = require("./methods/cmt.js")
+var Stake = require("./methods/stake.js")
+var utils = require("./utils")
+
+var MyWeb3 = function(provider) {
+  Web3.call(this, provider)
+
+  this.cmt = new Cmt(this)
+  this.cmt.version = version.version
+
+  this.stake = new Stake(this)
+  delete this.eth
+}
+
+MyWeb3.providers = Web3.providers
+
+MyWeb3.prototype = Object.create(Web3.prototype)
+MyWeb3.prototype.constructor = MyWeb3
+
+MyWeb3.prototype.toWei = utils.toWei
+MyWeb3.prototype.fromWei = utils.fromWei
+
+module.exports = MyWeb3
+
+},{"./methods/cmt.js":88,"./methods/stake.js":89,"./utils":90,"./version.json":91,"web3":36}],"bignumber.js":[function(require,module,exports){
 /*! bignumber.js v4.1.0 https://github.com/MikeMcl/bignumber.js/LICENCE */
 
 ;(function (globalObj) {
@@ -16476,27 +16573,14 @@ module.exports = Stake
 })(this);
 
 },{}],"web3-cmt":[function(require,module,exports){
-var Web3 = require("web3")
-var version = require("./version.json")
-var Cmt = require("./web3/methods/cmt.js")
-var Stake = require("./web3/methods/stake.js")
+var Web3 = require("./web3/web3")
 
-var MyWeb3 = function(provider) {
-  Web3.call(this, provider)
-
-  this.cmt = new Cmt(this)
-  this.cmt.version = version.version
-
-  this.stake = new Stake(this)
-  delete this.eth
+// dont override global variable
+if (typeof window !== "undefined" && typeof window.Web3 === "undefined") {
+  window.Web3 = Web3
 }
 
-MyWeb3.providers = Web3.providers
+module.exports = Web3
 
-MyWeb3.prototype = Object.create(Web3.prototype)
-MyWeb3.prototype.constructor = MyWeb3
-
-module.exports = MyWeb3
-
-},{"./version.json":87,"./web3/methods/cmt.js":89,"./web3/methods/stake.js":90,"web3":36}]},{},["web3-cmt"])
+},{"./web3/web3":92}]},{},["web3-cmt"])
 //# sourceMappingURL=web3-cmt.js.map
