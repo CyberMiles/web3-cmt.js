@@ -21,15 +21,15 @@ before("web3 setup", function() {
 
 before("Prepare 4 accounts", function() {
   logger.info(this.test.fullTitle())
-  // get or create 4 accounts
+  // get or create 4 accounts. skip first 2 accounts
   let count = web3.cmt.accounts.length
-  if (count > 1) {
-    accounts = web3.cmt.accounts.slice(1, 5)
+  if (count > 2) {
+    accounts = web3.cmt.accounts.slice(2, 6)
     logger.debug("use existing accounts: ", accounts)
   } else {
     accounts = []
   }
-  for (i = 0; i < 4 - count + 1; ++i) {
+  for (i = 0; i < 6 - count; ++i) {
     let acc = web3.personal.newAccount(Settings.Passphrase)
     logger.debug("new account created: ", acc)
     accounts.push(acc)
