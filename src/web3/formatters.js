@@ -8,7 +8,6 @@ inputDefaultHeightFormatter = function(height) {
   return height
 }
 
-module.exports = {
-  formatters: formatters,
-  inputDefaultHeightFormatter: inputDefaultHeightFormatter
-}
+formatters.inputDefaultHeightFormatter = inputDefaultHeightFormatter
+
+module.exports = formatters
