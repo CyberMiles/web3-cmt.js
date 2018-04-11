@@ -3,6 +3,7 @@ var Web3 = require("web3")
 var version = require("./version.json")
 var Cmt = require("./methods/cmt.js")
 var Stake = require("./methods/stake.js")
+var HttpProvider = require("./httpprovider")
 var utils = require("./utils")
 
 var MyWeb3 = function(provider) {
@@ -16,6 +17,7 @@ var MyWeb3 = function(provider) {
 }
 
 MyWeb3.providers = Web3.providers
+MyWeb3.providers.HttpProvider = HttpProvider
 
 MyWeb3.prototype = Object.create(Web3.prototype)
 MyWeb3.prototype.constructor = MyWeb3
