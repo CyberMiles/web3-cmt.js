@@ -1,6 +1,10 @@
 var BigNumber = require("bignumber.js")
 var utils = require("web3/lib/utils/utils")
 
+/**
+ * @namespace web3
+ */
+
 // override web3.fromWei/toWei, add cmt units
 var unitMap = {
   noether: "0",
@@ -38,7 +42,7 @@ var unitMap = {
 }
 
 var getValueOfUnit = function(unit) {
-  unit = unit ? unit.toLowerCase() : "ether"
+  unit = unit ? unit.toLowerCase() : "cmt"
   var unitValue = unitMap[unit]
   if (unitValue === undefined) {
     throw new Error(
@@ -49,12 +53,54 @@ var getValueOfUnit = function(unit) {
   return new BigNumber(unitValue, 10)
 }
 
+/**
+ * Converts a number of wei into ethereum or cmt units.
+ *
+ * Possible units besides common ethereum units are:
+ * <ul>
+ *  <li>cmt</li>
+ *  <li>kcmt</li>
+ *  <li>mcmt</li>
+ *  <li>gcmt</li>
+ *  <li>tcmt</li>
+ * </ul>
+ * @method
+ * @memberof web3
+ * @instance
+ * @param {Number|String|BigNumber} number A number or BigNumber instance.
+ * @param {String} unit One of the above units or common ethereum units.
+ * @return {String|BigNumber} Either a number string, or a BigNumber instance, depending on the given number parameter.
+ * @example
+ * var value = web3.fromWei("21000000000000", "cmt")
+ * console.log(value) // "0.000021"
+ */
 var fromWei = function(number, unit) {
   var returnValue = utils.toBigNumber(number).dividedBy(getValueOfUnit(unit))
 
   return utils.isBigNumber(number) ? returnValue : returnValue.toString(10)
 }
 
+/**
+ * Converts an ethereum or cmt unit into wei.
+ *
+ * Possible units besides common ethereum units are:
+ * <ul>
+ *  <li>cmt</li>
+ *  <li>kcmt</li>
+ *  <li>mcmt</li>
+ *  <li>gcmt</li>
+ *  <li>tcmt</li>
+ * </ul>
+ * @method
+ * @memberof web3
+ * @instance
+ * @param {Number|String|BigNumber} number A number or BigNumber instance.
+ * @param {String} unit One of the above units or common ethereum units.
+ * @return {String|BigNumber} Either a number string, or a BigNumber instance, depending on the given number parameter.
+ * @example
+ * var value = web3.toWei("1", "cmt")
+ * console.log(value) // "1000000000000000000"
+ */
 var toWei = function(number, unit) {
   var returnValue = utils.toBigNumber(number).times(getValueOfUnit(unit))
 

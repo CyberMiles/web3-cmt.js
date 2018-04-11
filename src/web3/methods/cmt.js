@@ -3,6 +3,11 @@ var Method = require("web3/lib/web3/method")
 var utils = require("web3/lib/utils/utils")
 var formatters = require("../formatters")
 
+/**
+ * @namespace cmt
+ * @memberOf web3
+ */
+
 // inherit and extend Eth
 var Cmt = function(web3) {
   Eth.call(this, web3)
