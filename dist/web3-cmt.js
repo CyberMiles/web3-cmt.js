@@ -15031,11 +15031,20 @@ var XHR2 = require("xhr2")
 var HttpProvider = require("web3/lib/web3/httpprovider")
 var url = require("url")
 
-// override to support HTTP Basic Authentication
-var MyHttpProvider = function(host, timeout) {
+// extend HttpProvider to support HTTP Basic Authentication
+var MyHttpProvider = function(host, timeout, user, password, headers) {
   HttpProvider.call(this, host, timeout)
+
+  // get auth info from url
   var myUrl = url.parse(host)
   this.auth = myUrl.auth
+
+  if (!this.auth) {
+    this.user = user
+    this.password = password
+  }
+
+  if (headers) this.headers = headers
 }
 
 MyHttpProvider.prototype = Object.create(HttpProvider.prototype)
@@ -15055,6 +15064,10 @@ MyHttpProvider.prototype.prepareRequest = function(async) {
   if (this.auth) {
     var auth = "Basic " + new Buffer(this.auth).toString("base64")
     request.setRequestHeader("Authorization", auth)
+  } else if (this.user && this.password) {
+    var auth =
+      "Basic " + new Buffer(this.user + ":" + this.password).toString("base64")
+    request.setRequestHeader("Authorization", auth)
   }
   request.setRequestHeader("Content-Type", "application/json")
   if (this.headers) {
@@ -15069,6 +15082,7 @@ module.exports = MyHttpProvider
 
 },{"url":39,"web3/lib/web3/httpprovider":74,"xhr2":92}],95:[function(require,module,exports){
 var Eth = require("web3/lib/web3/methods/eth")
+var Stake = require("./stake.js")
 var Method = require("web3/lib/web3/method")
 var utils = require("web3/lib/utils/utils")
 var formatters = require("../formatters")
@@ -15087,6 +15101,8 @@ var Cmt = function(web3) {
     method.attachToObject(self)
     method.setRequestManager(self._requestManager)
   })
+
+  this.stake = new Stake(this)
 }
 
 Cmt.prototype = Object.create(Eth.prototype)
@@ -15123,7 +15139,7 @@ var methods = function() {
 
 module.exports = Cmt
 
-},{"../formatters":93,"web3/lib/utils/utils":62,"web3/lib/web3/method":78,"web3/lib/web3/methods/eth":80}],96:[function(require,module,exports){
+},{"../formatters":93,"./stake.js":96,"web3/lib/utils/utils":62,"web3/lib/web3/method":78,"web3/lib/web3/methods/eth":80}],96:[function(require,module,exports){
 var utils = require("web3/lib/utils/utils")
 var Property = require("web3/lib/web3/property")
 var Method = require("web3/lib/web3/method")
@@ -15395,7 +15411,6 @@ var Web3 = require("web3")
 
 var version = require("./version.json")
 var Cmt = require("./methods/cmt.js")
-var Stake = require("./methods/stake.js")
 var HttpProvider = require("./httpprovider")
 var utils = require("./utils")
 
@@ -15405,7 +15420,6 @@ var MyWeb3 = function(provider) {
   this.cmt = new Cmt(this)
   this.cmt.version = version.version
 
-  this.stake = new Stake(this)
   delete this.eth
 }
 
@@ -15420,7 +15434,7 @@ MyWeb3.prototype.fromWei = utils.fromWei
 
 module.exports = MyWeb3
 
-},{"./httpprovider":94,"./methods/cmt.js":95,"./methods/stake.js":96,"./utils":97,"./version.json":98,"web3":42}],"bignumber.js":[function(require,module,exports){
+},{"./httpprovider":94,"./methods/cmt.js":95,"./utils":97,"./version.json":98,"web3":42}],"bignumber.js":[function(require,module,exports){
 /*! bignumber.js v4.1.0 https://github.com/MikeMcl/bignumber.js/LICENCE */
 
 ;(function (globalObj) {

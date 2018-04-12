@@ -1,4 +1,5 @@
 var Eth = require("web3/lib/web3/methods/eth")
+var Stake = require("./stake.js")
 var Method = require("web3/lib/web3/method")
 var utils = require("web3/lib/utils/utils")
 var formatters = require("../formatters")
@@ -17,6 +18,8 @@ var Cmt = function(web3) {
     method.attachToObject(self)
     method.setRequestManager(self._requestManager)
   })
+
+  this.stake = new Stake(this)
 }
 
 Cmt.prototype = Object.create(Eth.prototype)

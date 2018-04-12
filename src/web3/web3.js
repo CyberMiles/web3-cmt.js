@@ -2,7 +2,6 @@ var Web3 = require("web3")
 
 var version = require("./version.json")
 var Cmt = require("./methods/cmt.js")
-var Stake = require("./methods/stake.js")
 var HttpProvider = require("./httpprovider")
 var utils = require("./utils")
 
@@ -12,7 +11,6 @@ var MyWeb3 = function(provider) {
   this.cmt = new Cmt(this)
   this.cmt.version = version.version
 
-  this.stake = new Stake(this)
   delete this.eth
 }
 
