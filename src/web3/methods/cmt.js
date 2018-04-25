@@ -1,8 +1,9 @@
 var Eth = require("web3/lib/web3/methods/eth")
-var Stake = require("./stake.js")
 var Method = require("web3/lib/web3/method")
 var utils = require("web3/lib/utils/utils")
 var formatters = require("../formatters")
+var Stake = require("./stake.js")
+var Governance = require("./governance.js")
 
 /**
  * @namespace cmt
@@ -20,6 +21,7 @@ var Cmt = function(web3) {
   })
 
   this.stake = new Stake(this)
+  this.governance = new Governance(this)
 }
 
 Cmt.prototype = Object.create(Eth.prototype)
@@ -31,6 +33,25 @@ var methods = function() {
     call: "cmt_getSequence",
     params: 1,
     outputFormatter: utils.toDecimal
+  })
+
+  var sendRawTx = new Method({
+    name: "sendRawTx",
+    call: "cmt_sendRawTx",
+    params: 1,
+    inputFormatter: [null]
+  })
+  var sendTransaction = new Method({
+    name: "sendTransaction",
+    call: "cmt_sendTransaction",
+    params: 1,
+    inputFormatter: [formatters.inputTransactionFormatter]
+  })
+  var sendRawTransaction = new Method({
+    name: "sendRawTransaction",
+    call: "cmt_sendRawTransaction",
+    params: 1,
+    inputFormatter: [null]
   })
 
   var getBlock = new Method({
@@ -51,7 +72,7 @@ var methods = function() {
     params: 2
   })
 
-  return [getSequence]
+  return [getSequence, sendRawTx, sendTransaction, sendRawTransaction]
 }
 
 module.exports = Cmt
