@@ -28,13 +28,6 @@ Cmt.prototype = Object.create(Eth.prototype)
 Cmt.prototype.constructor = Cmt
 
 var methods = function() {
-  var getSequence = new Method({
-    name: "getSequence",
-    call: "cmt_getSequence",
-    params: 1,
-    outputFormatter: utils.toDecimal
-  })
-
   var sendRawTx = new Method({
     name: "sendRawTx",
     call: "cmt_sendRawTx",
@@ -72,7 +65,7 @@ var methods = function() {
     params: 2
   })
 
-  return [getSequence, sendRawTx, sendTransaction, sendRawTransaction]
+  return [sendRawTx, sendTransaction, sendRawTransaction]
 }
 
 module.exports = Cmt

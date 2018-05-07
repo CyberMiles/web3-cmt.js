@@ -36,8 +36,8 @@ var methods = function() {
     inputFormatter: [formatters.inputTransactionFormatter]
   })
   var queryProposals = new Method({
-    name: "queryValidators",
-    call: "cmt_queryValidators",
+    name: "queryProposals",
+    call: "cmt_queryProposals",
     params: 0
   })
 
