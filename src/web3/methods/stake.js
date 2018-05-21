@@ -48,37 +48,37 @@ var methods = function() {
     name: "declareCandidacy",
     call: "cmt_declareCandidacy",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var withdrawCandidacy = new Method({
     name: "withdrawCandidacy",
     call: "cmt_withdrawCandidacy",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var updateCandidacy = new Method({
     name: "updateCandidacy",
     call: "cmt_updateCandidacy",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var verifyCandidacy = new Method({
     name: "verifyCandidacy",
     call: "cmt_verifyCandidacy",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var delegate = new Method({
     name: "delegate",
     call: "cmt_delegate",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var withdraw = new Method({
     name: "withdraw",
     call: "cmt_withdraw",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var queryValidators = new Method({
     name: "queryValidators",

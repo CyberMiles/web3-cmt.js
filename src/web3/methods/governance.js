@@ -27,13 +27,13 @@ var methods = function() {
     name: "propose",
     call: "cmt_propose",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var vote = new Method({
     name: "vote",
     call: "cmt_vote",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var queryProposals = new Method({
     name: "queryProposals",

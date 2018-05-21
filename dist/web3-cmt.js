@@ -15022,7 +15022,27 @@ inputDefaultHeightFormatter = function(height) {
   return height
 }
 
+inputStakeTxFormatter = function(options) {
+  options.from = options.from || config.defaultAccount
+  options.from = formatters.inputAddressFormatter(options.from)
+
+  if (options.to) {
+    options.to = formatters.inputAddressFormatter(options.to)
+  }
+
+  ;["validatorAddress", "candidateAddress", "transferFrom", "transferTo"]
+    .filter(function(key) {
+      return options[key] !== undefined
+    })
+    .forEach(function(key) {
+      options[key] = formatters.inputAddressFormatter(options[key])
+    })
+
+  return options
+}
+
 formatters.inputDefaultHeightFormatter = inputDefaultHeightFormatter
+formatters.inputStakeTxFormatter = inputStakeTxFormatter
 
 module.exports = formatters
 
@@ -15082,10 +15102,11 @@ module.exports = MyHttpProvider
 
 },{"url":39,"web3/lib/web3/httpprovider":74,"xhr2":92}],95:[function(require,module,exports){
 var Eth = require("web3/lib/web3/methods/eth")
-var Stake = require("./stake.js")
 var Method = require("web3/lib/web3/method")
 var utils = require("web3/lib/utils/utils")
 var formatters = require("../formatters")
+var Stake = require("./stake.js")
+var Governance = require("./governance.js")
 
 /**
  * @namespace cmt
@@ -15103,17 +15124,30 @@ var Cmt = function(web3) {
   })
 
   this.stake = new Stake(this)
+  this.governance = new Governance(this)
 }
 
 Cmt.prototype = Object.create(Eth.prototype)
 Cmt.prototype.constructor = Cmt
 
 var methods = function() {
-  var getSequence = new Method({
-    name: "getSequence",
-    call: "cmt_getSequence",
+  var sendRawTx = new Method({
+    name: "sendRawTx",
+    call: "cmt_sendRawTx",
     params: 1,
-    outputFormatter: utils.toDecimal
+    inputFormatter: [null]
+  })
+  var sendTransaction = new Method({
+    name: "sendTransaction",
+    call: "cmt_sendTransaction",
+    params: 1,
+    inputFormatter: [formatters.inputTransactionFormatter]
+  })
+  var sendRawTransaction = new Method({
+    name: "sendRawTransaction",
+    call: "cmt_sendRawTransaction",
+    params: 1,
+    inputFormatter: [null]
   })
 
   var getBlock = new Method({
@@ -15134,12 +15168,65 @@ var methods = function() {
     params: 2
   })
 
-  return [getSequence]
+  return [sendRawTx, sendTransaction, sendRawTransaction]
 }
 
 module.exports = Cmt
 
-},{"../formatters":93,"./stake.js":96,"web3/lib/utils/utils":62,"web3/lib/web3/method":78,"web3/lib/web3/methods/eth":80}],96:[function(require,module,exports){
+},{"../formatters":93,"./governance.js":96,"./stake.js":97,"web3/lib/utils/utils":62,"web3/lib/web3/method":78,"web3/lib/web3/methods/eth":80}],96:[function(require,module,exports){
+var utils = require("web3/lib/utils/utils")
+var Property = require("web3/lib/web3/property")
+var Method = require("web3/lib/web3/method")
+var formatters = require("../formatters")
+
+/**
+ * @namespace web3.governance
+ */
+
+var Governance = function(web3) {
+  this._requestManager = web3._requestManager
+
+  var self = this
+  methods().forEach(function(method) {
+    method.attachToObject(self)
+    method.setRequestManager(self._requestManager)
+  })
+
+  properties().forEach(function(p) {
+    p.attachToObject(self)
+    p.setRequestManager(self._requestManager)
+  })
+}
+
+var methods = function() {
+  var propose = new Method({
+    name: "propose",
+    call: "cmt_propose",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
+  var vote = new Method({
+    name: "vote",
+    call: "cmt_vote",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
+  var queryProposals = new Method({
+    name: "queryProposals",
+    call: "cmt_queryProposals",
+    params: 0
+  })
+
+  return [propose, vote, queryProposals]
+}
+
+var properties = function() {
+  return []
+}
+
+module.exports = Governance
+
+},{"../formatters":93,"web3/lib/utils/utils":62,"web3/lib/web3/method":78,"web3/lib/web3/property":87}],97:[function(require,module,exports){
 var utils = require("web3/lib/utils/utils")
 var Property = require("web3/lib/web3/property")
 var Method = require("web3/lib/web3/method")
@@ -15190,43 +15277,37 @@ var methods = function() {
     name: "declareCandidacy",
     call: "cmt_declareCandidacy",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var withdrawCandidacy = new Method({
     name: "withdrawCandidacy",
     call: "cmt_withdrawCandidacy",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
-  var editCandidacy = new Method({
-    name: "editCandidacy",
-    call: "cmt_editCandidacy",
+  var updateCandidacy = new Method({
+    name: "updateCandidacy",
+    call: "cmt_updateCandidacy",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
-  var proposeSlot = new Method({
-    name: "proposeSlot",
-    call: "cmt_proposeSlot",
+  var verifyCandidacy = new Method({
+    name: "verifyCandidacy",
+    call: "cmt_verifyCandidacy",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
-  var acceptSlot = new Method({
-    name: "acceptSlot",
-    call: "cmt_acceptSlot",
+  var delegate = new Method({
+    name: "delegate",
+    call: "cmt_delegate",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
-  var withdrawSlot = new Method({
-    name: "withdrawSlot",
-    call: "cmt_withdrawSlot",
+  var withdraw = new Method({
+    name: "withdraw",
+    call: "cmt_withdraw",
     params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
-  })
-  var cancelSlot = new Method({
-    name: "cancelSlot",
-    call: "cmt_cancelSlot",
-    params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+    inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var queryValidators = new Method({
     name: "queryValidators",
@@ -15236,26 +15317,14 @@ var methods = function() {
   })
   var queryValidator = new Method({
     name: "queryValidator",
-    call: "cmt_queryValidtor",
+    call: "cmt_queryValidator",
     params: 2,
     inputFormatter: [
       formatters.inputAddressFormatter,
       formatters.inputDefaultHeightFormatter
     ]
   })
-  var querySlots = new Method({
-    name: "querySlots",
-    call: "cmt_querySlots",
-    params: 1,
-    inputFormatter: [formatters.inputDefaultHeightFormatter]
-  })
-  var querySlot = new Method({
-    name: "querySlot",
-    call: "cmt_querySlot",
-    params: 2,
-    inputFormatter: [null, formatters.inputDefaultHeightFormatter]
-  })
-  var queryDelegators = new Method({
+  var queryDelegator = new Method({
     name: "queryDelegator",
     call: "cmt_queryDelegator",
     params: 2,
@@ -15267,16 +15336,13 @@ var methods = function() {
   return [
     declareCandidacy,
     withdrawCandidacy,
-    editCandidacy,
-    proposeSlot,
-    acceptSlot,
-    withdrawSlot,
-    cancelSlot,
+    updateCandidacy,
+    verifyCandidacy,
+    delegate,
+    withdraw,
     queryValidators,
     queryValidator,
-    querySlots,
-    querySlot,
-    queryDelegators
+    queryDelegator
   ]
 }
 
@@ -15286,7 +15352,7 @@ var properties = function() {
 
 module.exports = Stake
 
-},{"../formatters":93,"web3/lib/utils/utils":62,"web3/lib/web3/method":78,"web3/lib/web3/property":87}],97:[function(require,module,exports){
+},{"../formatters":93,"web3/lib/utils/utils":62,"web3/lib/web3/method":78,"web3/lib/web3/property":87}],98:[function(require,module,exports){
 var BigNumber = require("bignumber.js")
 var utils = require("web3/lib/utils/utils")
 
@@ -15401,12 +15467,12 @@ module.exports = {
   toWei: toWei
 }
 
-},{"bignumber.js":"bignumber.js","web3/lib/utils/utils":62}],98:[function(require,module,exports){
+},{"bignumber.js":"bignumber.js","web3/lib/utils/utils":62}],99:[function(require,module,exports){
 module.exports={
   "version": "0.0.1"
 }
 
-},{}],99:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 var Web3 = require("web3")
 
 var version = require("./version.json")
@@ -15434,7 +15500,7 @@ MyWeb3.prototype.fromWei = utils.fromWei
 
 module.exports = MyWeb3
 
-},{"./httpprovider":94,"./methods/cmt.js":95,"./utils":97,"./version.json":98,"web3":42}],"bignumber.js":[function(require,module,exports){
+},{"./httpprovider":94,"./methods/cmt.js":95,"./utils":98,"./version.json":99,"web3":42}],"bignumber.js":[function(require,module,exports){
 /*! bignumber.js v4.1.0 https://github.com/MikeMcl/bignumber.js/LICENCE */
 
 ;(function (globalObj) {
@@ -18180,5 +18246,5 @@ if (typeof window !== "undefined" && typeof window.Web3 === "undefined") {
 
 module.exports = Web3
 
-},{"./web3/web3":99}]},{},["web3-cmt"])
+},{"./web3/web3":100}]},{},["web3-cmt"])
 //# sourceMappingURL=web3-cmt.js.map
