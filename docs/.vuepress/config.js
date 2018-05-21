@@ -1,5 +1,6 @@
 module.exports = {
   title: "JavaScript API for Travis",
+  base: "/web3-cmt.js/",
   themeConfig: {
     nav: [
       { text: "API", link: "/" },

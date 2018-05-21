@@ -1,12 +1,20 @@
 language: node_js
 node_js:
   - "8"
-services:
-  - docker
+branches:
+  only:
+  - dev
 cache:
    directories:
      - node_modules
 script:
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker build -t "ywonline/web3-cmt:latest" -f test/Dockerfile .
-  - docker push "ywonline/web3-cmt:latest"
+    - npm run docs:build
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: false
+  local-dir: docs/.vuepress/dist
+  target-branch: gh-pages
+  on:
+    branch: dev

@@ -7,3 +7,6 @@ npm-debug.log
 .idea
 .node-xmlhttprequest*
 *.swp
+
+# doc dist
+docs/.vuepress/dist
