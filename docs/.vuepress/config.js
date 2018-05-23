@@ -1,19 +1,23 @@
 module.exports = {
-  title: "JavaScript API for Travis",
+  title: "web3-cmt.js",
   base: "/web3-cmt.js/",
   themeConfig: {
     nav: [
+      {
+        text: "Installation",
+        link: "https://github.com/CyberMiles/web3-cmt.js/blob/master/README.md"
+      },
       { text: "API", link: "/" },
       {
-        text: "github",
+        text: "GitHub",
         items: [
           {
-            text: "travis",
-            link: "https://github.com/CyberMiles/travis"
+            text: "web3-cmt.js",
+            link: "https://github.com/CyberMiles/web3-cmt.js"
           },
           {
-            text: "web3-cmt",
-            link: "https://github.com/CyberMiles/web3-cmt.js"
+            text: "Travis",
+            link: "https://github.com/CyberMiles/travis"
           }
         ]
       }
