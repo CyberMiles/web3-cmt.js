@@ -24,6 +24,13 @@ inputStakeTxFormatter = function(options) {
     .forEach(function(key) {
       options[key] = formatters.inputAddressFormatter(options[key])
     })
+  ;["amount", "maxAmount"]
+    .filter(function(key) {
+      return options[key] !== undefined
+    })
+    .forEach(function(key) {
+      options[key] = utils.fromDecimal(options[key])
+    })
 
   return options
 }
