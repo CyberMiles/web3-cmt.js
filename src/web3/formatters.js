@@ -17,6 +17,7 @@ inputStakeTxFormatter = function(options) {
     options.to = formatters.inputAddressFormatter(options.to)
   }
 
+  // address format
   ;["validatorAddress", "candidateAddress", "transferFrom", "transferTo"]
     .filter(function(key) {
       return options[key] !== undefined
@@ -24,6 +25,7 @@ inputStakeTxFormatter = function(options) {
     .forEach(function(key) {
       options[key] = formatters.inputAddressFormatter(options[key])
     })
+  // amount format
   ;["amount", "maxAmount"]
     .filter(function(key) {
       return options[key] !== undefined
