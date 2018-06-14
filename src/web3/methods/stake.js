@@ -22,28 +22,7 @@ var Stake = function(web3) {
   })
 }
 
-/**
- * @typedef {Object} CmtTxReturn
- * @memberof web3.stake
- * @property {Object} result The result object
- */
-
 var methods = function() {
-  /**
-   * Allows a potential validator to declare its candidacy
-   * @method
-   * @memberof web3.stake
-   * @instance
-   * @param declareObject {Object} The declare candidacy object to send.
-   * @param declareObject.from {String} The address for the sending account. Uses the web3.cmt.defaultAccount property, if not specified.
-   * @param declareObject.pubKey {String} The validator node public key.
-   * @return {web3.stake.CmtTxReturn} A return object
-   * @example
-   * var myAccount = "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc"
-   * var pubKey = "3CD6F72704EC4ABEA701D17F3C44893937C3FEDCC934B9EF26B26D58F611D578"
-   * var r = web3.stake.declareCandidacy({from: myAccount, pubKey: pubKey})
-   * console.log(r)
-   */
   var declareCandidacy = new Method({
     name: "declareCandidacy",
     call: "cmt_declareCandidacy",
@@ -65,6 +44,12 @@ var methods = function() {
   var verifyCandidacy = new Method({
     name: "verifyCandidacy",
     call: "cmt_verifyCandidacy",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
+  var activateCandidacy = new Method({
+    name: "activateCandidacy",
+    call: "cmt_activateCandidacy",
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
@@ -109,6 +94,7 @@ var methods = function() {
     withdrawCandidacy,
     updateCandidacy,
     verifyCandidacy,
+    activateCandidacy,
     delegate,
     withdraw,
     queryValidators,
