@@ -28,6 +28,12 @@ Cmt.prototype = Object.create(Eth.prototype)
 Cmt.prototype.constructor = Cmt
 
 var methods = function() {
+  var sendTx = new Method({
+    name: "sendTx",
+    call: "cmt_sendTx",
+    params: 1,
+    inputFormatter: [formatters.inputTransactionFormatter]
+  })
   var sendRawTx = new Method({
     name: "sendRawTx",
     call: "cmt_sendRawTx",
@@ -49,13 +55,13 @@ var methods = function() {
 
   var getBlock = new Method({
     name: "getBlock",
-    call: "cmt_getBlock",
+    call: "cmt_getBlockByNumber",
     params: 1
   })
 
   var getTransaction = new Method({
     name: "getTransaction",
-    call: "cmt_getTransaction",
+    call: "cmt_getTransactionByHash",
     params: 1
   })
 
@@ -65,7 +71,7 @@ var methods = function() {
     params: 2
   })
 
-  return [sendRawTx, sendTransaction, sendRawTransaction]
+  return [sendTx, sendRawTx, sendTransaction, sendRawTransaction]
 }
 
 module.exports = Cmt
