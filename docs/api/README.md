@@ -64,16 +64,16 @@ var balance = web3.cmt.getBalance("0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
 
 ---
 
-## web3.cmt.stake
+## web3.cmt.stake.validator
 
-The `web3.cmt.stake` contains all staking related functions.
+The `web3.cmt.stake.validator` contains all validator related functions.
 
 ---
 
-### declareCandidacy
+### declare
 
 ```js
-web3.cmt.stake.declareCandidacy(validatorToDeclare [, callback])
+web3.cmt.stake.validator.declare(validatorToDeclare [, callback])
 ```
 
 Allows a potential validator declares its candidacy.
@@ -113,7 +113,7 @@ var payload = {
   maxAmount: web3.toWei(1000, "cmt"),
   comp_rate: "0.2"
 }
-web3.cmt.stake.declareCandidacy(payload, (err, res) => {
+web3.cmt.stake.validator.declare(payload, (err, res) => {
   if (!err) {
     console.log(res)
     /*
@@ -140,10 +140,10 @@ web3.cmt.stake.declareCandidacy(payload, (err, res) => {
 
 ---
 
-### updateCandidacy
+### update
 
 ```js
-web3.cmt.stake.updateCandidacy(validatorToUpdate [, callback])
+web3.cmt.stake.validator.update(validatorToUpdate [, callback])
 ```
 
 Allows a validator candidate to change its candidacy.
@@ -181,7 +181,7 @@ var payload = {
     website: "http://www.blahblahblah.com/"
   }
 }
-web3.cmt.stake.updateCandidacy(payload, (err, res) => {
+web3.cmt.stake.validator.update(payload, (err, res) => {
   if (!err) {
     console.log(res)
     /*
@@ -208,10 +208,10 @@ web3.cmt.stake.updateCandidacy(payload, (err, res) => {
 
 ---
 
-### withdrawCandidacy
+### withdraw
 
 ```js
-web3.cmt.stake.withdrawCandidacy(validatorToWithdraw [, callback])
+web3.cmt.stake.validator.withdraw(validatorToWithdraw [, callback])
 ```
 
 Allows a validator to withdraw.
@@ -240,7 +240,7 @@ Allows a validator to withdraw.
 var payload = {
   from: "0xc4abd0339eb8d57087278718986382264244252f"
 }
-web3.cmt.stake.withdrawCandidacy(payload, (err, res) => {
+web3.cmt.stake.validator.withdraw(payload, (err, res) => {
   if (!err) {
     console.log(res)
     /*
@@ -267,17 +267,17 @@ web3.cmt.stake.withdrawCandidacy(payload, (err, res) => {
 
 ---
 
-### verifyCandidacy
+### verify
 
 ```js
-web3.cmt.stake.verifyCandidacy(validatorToVerify [, callback])
+web3.cmt.stake.validator.verify(validatorToVerify [, callback])
 ```
 
-Allows the foundation to “verify” a validator's information.
+Allows the foundation to "verify" a validator's information.
 
 #### Parameters
 
-* `validatorToWithdraw`: `Object` - The validator object to verify.
+* `validatorToVerify`: `Object` - The validator object to verify.
 
   * `from`: `String` - A special address the foundation owns. Uses the `web3.cmt.defaultAccount` property, if not specified.
   * `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
@@ -303,7 +303,7 @@ var payload = {
   candidateAddress: "0xc4abd0339eb8d57087278718986382264244252f",
   verified: true
 }
-web3.cmt.stake.verifyCandidacy(payload, (err, res) => {
+web3.cmt.stake.validator.verify(payload, (err, res) => {
   if (!err) {
     console.log(res)
     /*
@@ -330,10 +330,73 @@ web3.cmt.stake.verifyCandidacy(payload, (err, res) => {
 
 ---
 
-### queryValidator
+### activate
 
 ```js
-web3.cmt.stake.queryValidator(validatorAddress [, height] [, callback])
+web3.cmt.stake.validator.activate(validatorToActivate [, callback])
+```
+
+Allows a "removed" validator to re-activate itself.
+
+#### Parameters
+
+* `validatorToActivate`: `Object` - The validator object to activate.
+
+  * `from`: `String` - The address for the validator. Uses the `web3.cmt.defaultAccount` property, if not specified.
+  * `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+
+* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+
+#### Returns
+
+* `Object` - Result object.
+
+  * `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  * `hash`: `String` - Hash of the transaction.
+  * `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  * `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
+
+#### Example
+
+```js
+var payload = {
+  from: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc"
+}
+web3.cmt.stake.validator.activate(payload, (err, res) => {
+  if (!err) {
+    console.log(res)
+    /*
+    {
+      check_tx: { fee: {} },
+      deliver_tx: { fee: {} },
+      hash: 'FB70A78AD62A0E0B24194CA951725770B2EFBC0A',
+      height: 393
+    }
+    */
+  } else {
+    console.log(err)
+    /*
+    {
+      "check_tx": {
+        "code": 1,
+        "log": "already activated",
+        "fee": {}
+      },
+      deliver_tx: { fee: {} },
+      "hash": "FB70A78AD62A0E0B24194CA951725770B2EFBC0A",
+      "height": 0
+    }
+    */
+  }
+})
+```
+
+---
+
+### query
+
+```js
+web3.cmt.stake.validator.query(validatorAddress [, height] [, callback])
 ```
 
 Query the current stake status of a specific validator.
@@ -354,7 +417,7 @@ Query the current stake status of a specific validator.
 #### Example
 
 ```js
-var info = web3.cmt.stake.queryValidator(
+var info = web3.cmt.stake.validator.query(
   "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc"
 )
 console.log(info)
@@ -383,10 +446,10 @@ console.log(info)
 
 ---
 
-### queryValidators
+### list
 
 ```js
-web3.cmt.stake.queryValidators([height] [, callback])
+web3.cmt.stake.validator.list([height] [, callback])
 ```
 
 Returns a list of all current validators and validator candidates.
@@ -406,7 +469,7 @@ Returns a list of all current validators and validator candidates.
 #### Example
 
 ```js
-var info = web3.cmt.stake.queryValidators()
+var info = web3.cmt.stake.validator.list()
 console.log(info)
 /*
 { 
@@ -433,10 +496,16 @@ console.log(info)
 
 ---
 
-### delegate
+## web3.cmt.stake.delegator
+
+The `web3.cmt.stake.delegator` contains all delegator related functions.
+
+---
+
+### accept
 
 ```js
-web3.cmt.stake.delegate(delegateObject [, callback])
+web3.cmt.stake.delegator.accept(delegateObject [, callback])
 ```
 
 Used by a delegator to stake CMTs to a validator.
@@ -469,7 +538,7 @@ var payload = {
   validatorAddress: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
   amount: web3.toWei(1000, "cmt")
 }
-web3.cmt.stake.delegate(payload, (err, res) => {
+web3.cmt.stake.delegator.accept(payload, (err, res) => {
   if (!err) {
     console.log(res)
     /*
@@ -499,7 +568,7 @@ web3.cmt.stake.delegate(payload, (err, res) => {
 ### withdraw
 
 ```js
-web3.cmt.stake.withdraw(withdrawObject [, callback])
+web3.cmt.stake.delegator.withdraw(withdrawObject [, callback])
 ```
 
 Used by a delegator to unbind staked CMTs from a validator.
@@ -532,7 +601,7 @@ var payload = {
   validatorAddress: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
   amount: web3.toWei(1000, "cmt")
 }
-web3.cmt.stake.withdraw(payload, (err, res) => {
+web3.cmt.stake.delegator.withdraw(payload, (err, res) => {
   if (!err) {
     console.log(res)
     /*
@@ -559,10 +628,10 @@ web3.cmt.stake.withdraw(payload, (err, res) => {
 
 ---
 
-### queryDelegator
+### query
 
 ```js
-web3.cmt.stake.queryDelegator(delegatorAddress [, height] [, callback])
+web3.cmt.stake.delegator.query(delegatorAddress [, height] [, callback])
 ```
 
 Query the current stake status of a specific delegator.
@@ -583,7 +652,7 @@ Query the current stake status of a specific delegator.
 #### Example
 
 ```js
-var info = web3.cmt.stake.queryDelegator(
+var info = web3.cmt.stake.delegator.query(
   "0x84f444c0405c762afa4ee3e8d8a5b3653ea52549"
 )
 console.log(info)

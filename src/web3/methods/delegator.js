@@ -3,11 +3,7 @@ var Property = require("web3/lib/web3/property")
 var Method = require("web3/lib/web3/method")
 var formatters = require("../formatters")
 
-/**
- * @namespace web3.governance
- */
-
-var Governance = function(web3) {
+var Delegator = function(web3) {
   this._requestManager = web3._requestManager
 
   var self = this
@@ -23,29 +19,33 @@ var Governance = function(web3) {
 }
 
 var methods = function() {
-  var propose = new Method({
-    name: "propose",
-    call: "cmt_propose",
+  var accept = new Method({
+    name: "accept",
+    call: "cmt_delegate",
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
-  var vote = new Method({
-    name: "vote",
-    call: "cmt_vote",
+  var withdraw = new Method({
+    name: "withdraw",
+    call: "cmt_withdraw",
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
-  })
-  var list = new Method({
-    name: "queryProposals",
-    call: "cmt_queryProposals",
-    params: 0
   })
 
-  return [propose, vote, list]
+  var query = new Method({
+    name: "query",
+    call: "cmt_queryDelegator",
+    params: 2,
+    inputFormatter: [
+      formatters.inputAddressFormatter,
+      formatters.inputDefaultHeightFormatter
+    ]
+  })
+  return [accept, withdraw, query]
 }
 
 var properties = function() {
   return []
 }
 
-module.exports = Governance
+module.exports = Delegator
