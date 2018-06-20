@@ -1,14 +1,10 @@
 var Eth = require("web3/lib/web3/methods/eth")
 var Method = require("web3/lib/web3/method")
+var Property = require("web3/lib/web3/property")
 var utils = require("web3/lib/utils/utils")
 var formatters = require("../formatters")
 var Stake = require("./stake.js")
 var Governance = require("./governance.js")
-
-/**
- * @namespace cmt
- * @memberOf web3
- */
 
 // inherit and extend Eth
 var Cmt = function(web3) {
@@ -19,6 +15,17 @@ var Cmt = function(web3) {
     method.attachToObject(self)
     method.setRequestManager(self._requestManager)
   })
+
+  properties().forEach(function(p) {
+    p.attachToObject(self)
+    p.setRequestManager(self._requestManager)
+  })
+
+  // isSyncing is not supported
+  this.isSyncing = undefined
+
+  // restore the original defineProperty
+  Object.defineProperty = _defineProperty
 
   this.stake = new Stake(this)
   this.governance = new Governance(this)
@@ -72,6 +79,25 @@ var methods = function() {
   })
 
   return [sendTx, sendRawTx, sendTransaction, sendRawTransaction]
+}
+
+var properties = function() {
+  return [
+    new Property({
+      name: "syncing",
+      getter: "cmt_syncing"
+    })
+  ]
+}
+
+// make override properties configurable
+var _defineProperty = Object.defineProperty
+var props = properties().map(p => p.name)
+Object.defineProperty = function(obj, prop, descriptor) {
+  if (obj instanceof Cmt && props.includes(prop)) {
+    descriptor.configurable = true
+  }
+  return _defineProperty(obj, prop, descriptor)
 }
 
 module.exports = Cmt

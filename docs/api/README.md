@@ -64,6 +64,44 @@ var balance = web3.cmt.getBalance("0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe")
 
 ---
 
+## web3.cmt.syncing
+
+```js
+web3.cmt.syncing
+// or async
+web3.cmt.getSyncing(callback(error, result){ ... })
+```
+
+This property is read only and returns the sync object.
+
+### Returns
+
+* Object - A sync object as follows:
+
+  * latest_block_hash: Number - The hash of the latest block.
+  * latest_app_hash: Number - The hash of latest application state.
+  * latest_block_height: Number - The latest block number.
+  * latest_block_time: Number - The latest block time.
+  * syncing: Boolean - Whether the node is syncing or not.
+
+### Example
+
+```js
+var sync = web3.cmt.syncing
+console.log(sync)
+/*
+{
+  latest_block_hash: '3F84EF726F19DF528620DD745FC6C2251CAE2673',
+  latest_app_hash: '64BA27DCACAB23EBF4CF7ACE3604285F66739226',
+  latest_block_height: 635,
+  latest_block_time: '2018-06-20T08:01:31.061402192Z',
+  syncing: false
+}
+*/
+```
+
+---
+
 ## web3.cmt.stake.validator
 
 The `web3.cmt.stake.validator` contains all validator related functions.
