@@ -76,13 +76,13 @@ This property is read only and returns the sync object.
 
 ### Returns
 
-* Object - A sync object as follows:
+- Object - A sync object as follows:
 
-  * latest_block_hash: Number - The hash of the latest block.
-  * latest_app_hash: Number - The hash of latest application state.
-  * latest_block_height: Number - The latest block number.
-  * latest_block_time: Number - The latest block time.
-  * syncing: Boolean - Whether the node is syncing or not.
+  - latest_block_hash: Number - The hash of the latest block.
+  - latest_app_hash: Number - The hash of latest application state.
+  - latest_block_height: Number - The latest block number.
+  - latest_block_time: Number - The latest block time.
+  - syncing: Boolean - Whether the node is syncing or not.
 
 ### Example
 
@@ -118,29 +118,29 @@ Allows a potential validator declares its candidacy.
 
 #### Parameters
 
-* `validatorToDeclare`: `Object` - The validator object to declare.
+- `validatorToDeclare`: `Object` - The validator object to declare.
 
-  * `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. It will be associated with this validator (for self-staking and in order to get paid).
-  * `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
-  * `pubKey`: `String` - Validator node public key.
-  * `maxAmount`: `String` - Max amount of CMTs to be staked.
-  * `compRate`: `String` - Validator compensation. That is the percentage of block awards to be distributed back to the validators.
-  * `description`: `Object` - (optional) Description object as follows:
+  - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. It will be associated with this validator (for self-staking and in order to get paid).
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `pubKey`: `String` - Validator node public key.
+  - `maxAmount`: `String` - Max amount of CMTs to be staked.
+  - `compRate`: `String` - Validator compensation. That is the percentage of block awards to be distributed back to the validators.
+  - `description`: `Object` - (optional) Description object as follows:
 
-    * `website`: `String` - Web page link.
-    * `location`: `String` - Location(network and geo).
-    * `details`: `String` - Other informations.
+    - `website`: `String` - Web page link.
+    - `location`: `String` - Location(network and geo).
+    - `details`: `String` - Other informations.
 
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - The block number where the transaction is in. =0 if failed.
-  * `hash`: `String` - Hash of the transaction.
-  * `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
-  * `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
 
 #### Example
 
@@ -188,26 +188,26 @@ Allows a validator candidate to change its candidacy.
 
 #### Parameters
 
-* `validatorToUpdate`: `Object` - The validator object to update.
+- `validatorToUpdate`: `Object` - The validator object to update.
 
-  * `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified.
-  * `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
-  * `maxAmount`: `String` - (optional) New max amount of CMTs to be staked.
-  * `description`: `Object` - (optional) When updated, the verified status will set to false:
-    * `website`: `String` - Web page link.
-    * `location`: `String` - Location(network and geo).
-    * `details`: `String` - Other informations.
+  - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `maxAmount`: `String` - (optional) New max amount of CMTs to be staked.
+  - `description`: `Object` - (optional) When updated, the verified status will set to false:
+    - `website`: `String` - Web page link.
+    - `location`: `String` - Location(network and geo).
+    - `details`: `String` - Other informations.
 
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - The block number where the transaction is in. =0 if failed.
-  * `hash`: `String` - Hash of the transaction.
-  * `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
-  * `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
 
 #### Example
 
@@ -256,21 +256,21 @@ Allows a validator to withdraw.
 
 #### Parameters
 
-* `validatorToWithdraw`: `Object` - The validator object to withdraw.
+- `validatorToWithdraw`: `Object` - The validator object to withdraw.
 
-  * `from`: `String` - The address for the validator. Uses the `web3.cmt.defaultAccount` property, if not specified.
-  * `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `from`: `String` - The address for the validator. Uses the `web3.cmt.defaultAccount` property, if not specified.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
 
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - The block number where the transaction is in. =0 if failed.
-  * `hash`: `String` - Hash of the transaction.
-  * `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
-  * `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
 
 #### Example
 
@@ -315,23 +315,23 @@ Allows the foundation to "verify" a validator's information.
 
 #### Parameters
 
-* `validatorToVerify`: `Object` - The validator object to verify.
+- `validatorToVerify`: `Object` - The validator object to verify.
 
-  * `from`: `String` - A special address the foundation owns. Uses the `web3.cmt.defaultAccount` property, if not specified.
-  * `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
-  * `candidateAddress`: `String` - The address of validator to verfify.
-  * `verified`: `Boolean` - (optional) Verified true or false, default to false.
+  - `from`: `String` - A special address the foundation owns. Uses the `web3.cmt.defaultAccount` property, if not specified.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `candidateAddress`: `String` - The address of validator to verfify.
+  - `verified`: `Boolean` - (optional) Verified true or false, default to false.
 
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - The block number where the transaction is in. =0 if failed.
-  * `hash`: `String` - Hash of the transaction.
-  * `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
-  * `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
 
 #### Example
 
@@ -378,21 +378,21 @@ Allows a "removed" validator to re-activate itself.
 
 #### Parameters
 
-* `validatorToActivate`: `Object` - The validator object to activate.
+- `validatorToActivate`: `Object` - The validator object to activate.
 
-  * `from`: `String` - The address for the validator. Uses the `web3.cmt.defaultAccount` property, if not specified.
-  * `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `from`: `String` - The address for the validator. Uses the `web3.cmt.defaultAccount` property, if not specified.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
 
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - The block number where the transaction is in. =0 if failed.
-  * `hash`: `String` - Hash of the transaction.
-  * `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
-  * `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
 
 #### Example
 
@@ -441,16 +441,16 @@ Query the current stake status of a specific validator.
 
 #### Parameters
 
-* `validatorAddress`: `String` - The validator address.
-* `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `validatorAddress`: `String` - The validator address.
+- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - Current block number or the block number if specified.
-  * `data`: `Object` - The validator object.
+  - `height`: `Number` - Current block number or the block number if specified.
+  - `data`: `Object` - The validator object.
 
 #### Example
 
@@ -494,15 +494,15 @@ Returns a list of all current validators and validator candidates.
 
 #### Parameters
 
-* `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - Current block number or the block number if specified.
-  * `data`: `Array` - An array of all current validators and validator candidates. For details of validator object, see [web3.cmt.stake.queryValidator](#queryvalidator).
+  - `height`: `Number` - Current block number or the block number if specified.
+  - `data`: `Array` - An array of all current validators and validator candidates. For details of validator object, see [web3.cmt.stake.queryValidator](#queryvalidator).
 
 #### Example
 
@@ -550,23 +550,23 @@ Used by a delegator to stake CMTs to a validator.
 
 #### Parameters
 
-* `delegateObject`: `Object` - The delegate object.
+- `delegateObject`: `Object` - The delegate object.
 
-  * `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified.
-  * `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
-  * `validatorAddress`: `String` - The address of validator to delegate.
-  * `amount`: `String` - Amount of CMTs in Wei to delegate.
+  - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `validatorAddress`: `String` - The address of validator to delegate.
+  - `amount`: `String` - Amount of CMTs in Wei to delegate.
 
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - The block number where the transaction is in. =0 if failed.
-  * `hash`: `String` - Hash of the transaction.
-  * `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
-  * `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
 
 #### Example
 
@@ -613,23 +613,23 @@ Used by a delegator to unbind staked CMTs from a validator.
 
 #### Parameters
 
-* `withdrawObject`: `Object` - The withdraw object.
+- `withdrawObject`: `Object` - The withdraw object.
 
-  * `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified.
-  * `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
-  * `validatorAddress`: `String` - The address of validator to withdraw.
-  * `amount`: `String` - Amount of CMTs in Wei to withdraw.
+  - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `validatorAddress`: `String` - The address of validator to withdraw.
+  - `amount`: `String` - Amount of CMTs in Wei to withdraw.
 
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - The block number where the transaction is in. =0 if failed.
-  * `hash`: `String` - Hash of the transaction.
-  * `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
-  * `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
 
 #### Example
 
@@ -676,16 +676,16 @@ Query the current stake status of a specific delegator.
 
 #### Parameters
 
-* `delegatorAddress`: `String` - The delegator address.
-* `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `delegatorAddress`: `String` - The delegator address.
+- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - Current block number or the block number if specified.
-  * `data`: `Object` - The delegator object.
+  - `height`: `Number` - Current block number or the block number if specified.
+  - `data`: `Object` - The delegator object.
 
 #### Example
 
@@ -722,35 +722,36 @@ The `web3.cmt.governance` module allows validators to vote on changes to the sys
 
 ---
 
-### propose
+### proposeRecoverFund
 
 ```js
-web3.cmt.governance.propose(proposalObject [, callback])
+web3.cmt.governance.proposeRecoverFund(recoverFundObject [, callback])
 ```
 
 Propose a fund recovery proposal.
 
 #### Parameters
 
-* `proposalObject`: `Object` - The proposal object.
+- `recoverFundObject`: `Object` - The fund recovery proposal object.
 
-  * `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. Must be a validator.
-  * `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
-  * `transferFrom`: `String` - From account address.
-  * `transferTo`: `String` - To account address.
-  * `amount`: `String` - Amount of CMTs in Wei.
-  * `expire`: `Number` - (optional) Expiration block height. Default to 7 days, measured in block height (`7 * 24 * 60 * 60 / 10`)
+  - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. Must be a validator.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `transferFrom`: `String` - From account address.
+  - `transferTo`: `String` - To account address.
+  - `amount`: `String` - Amount of CMTs in Wei.
+  - `reason`: `String` - (optional) Reason.
+  - `expire`: `Number` - (optional) Expiration block height. Default to 7 days, measured in block height (`7 * 24 * 60 * 60 / 10`)
 
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - The block number where the transaction is in. =0 if failed.
-  * `hash`: `String` - Hash of the transaction.
-  * `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
-  * `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed. If successful, the `ProposalID` will be set in the `data` property, for validators to vote later.
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed. If successful, the `ProposalID` will be set in the `data` property, for validators to vote later.
 
 #### Example
 
@@ -761,7 +762,7 @@ var payload = {
   transferTo: "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe",
   amount: web3.toWei(1000, "cmt")
 }
-web3.cmt.governance.propose(payload, (err, res) => {
+web3.cmt.governance.proposeRecoverFund(payload, (err, res) => {
   if (!err) {
     console.log(res)
     /*
@@ -769,7 +770,83 @@ web3.cmt.governance.propose(payload, (err, res) => {
       check_tx: { fee: {} },
       deliver_tx: {
         data: 'JTUx+ODH0/OSdgfC0Sn66qjn2tX8LfvbiwnArzNpIus=',
-        fee: {}
+        gasUsed": '2000000',
+        fee: {
+            key: 'R2FzRmVl',
+            value: "4000000000000000'
+        }
+      },
+      hash: '95A004438F89E809657EB119ACBDB42A33725B39',
+      height: 561
+    }
+    */
+  } else {
+    console.log(err)
+    /*
+    {
+      check_tx: { code: 20, log: 'Insufficient balance', fee: {} },
+      deliver_tx: { fee: {} },
+      hash: '9D9287A0A5876C8C40A06483DA8885581C073064',
+      height: 0
+    }
+    */
+  }
+})
+```
+
+---
+
+### proposeChangeParam
+
+```js
+web3.cmt.governance.proposeChangeParam(changeParamObject [, callback])
+```
+
+Propose a system parameter change.
+
+#### Parameters
+
+- `changeParamObject`: `Object` - The system parameter change proposal object.
+
+  - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. Must be a validator.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `name`: `String` - The name of the parameter.
+  - `value`: `String` - New value of the parameter.
+  - `reason`: `String` - (optional) Reason.
+  - `expire`: `Number` - (optional) Expiration block height. Default to 7 days, measured in block height (`7 * 24 * 60 * 60 / 10`)
+
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+
+#### Returns
+
+- `Object` - Result object.
+
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed. If successful, the `ProposalID` will be set in the `data` property, for validators to vote later.
+
+#### Example
+
+```js
+var payload = {
+  from: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+  name: "gas_price",
+  value: "3000000000"
+}
+web3.cmt.governance.proposeChangeParam(payload, (err, res) => {
+  if (!err) {
+    console.log(res)
+    /*
+    {
+      check_tx: { fee: {} },
+      deliver_tx: {
+        data: 'JTUx+ODH0/OSdgfC0Sn66qjn2tX8LfvbiwnArzNpIus=',
+        gasUsed": '2000000',
+        fee: {
+            key: 'R2FzRmVl',
+            value: "4000000000000000'
+        }
       },
       hash: '95A004438F89E809657EB119ACBDB42A33725B39',
       height: 561
@@ -801,23 +878,23 @@ Propose a fund recovery proposal.
 
 #### Parameters
 
-* `voteObject`: `Object` - The vote object.
+- `voteObject`: `Object` - The vote object.
 
-  * `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. Must be a validator.
-  * `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
-  * `proposalId`: `String` - The Proposal ID to vote.
-  * `answer`: `String` - Y or N.
+  - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. Must be a validator.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `proposalId`: `String` - The Proposal ID to vote.
+  - `answer`: `String` - Y or N.
 
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - The block number where the transaction is in. =0 if failed.
-  * `hash`: `String` - Hash of the transaction.
-  * `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
-  * `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed. If successful, the `ProposalID` will be set in the `data` property, for validators to vote later.
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed. If successful, the `ProposalID` will be set in the `data` property, for validators to vote later.
 
 #### Example
 
@@ -867,15 +944,15 @@ Returns a list of all proposals.
 
 #### Parameters
 
-* `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
-* `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
 
-* `Object` - Result object.
+- `Object` - Result object.
 
-  * `height`: `Number` - Current block number or the block number if specified.
-  * `data`: `Array` - An array of all proposals.
+  - `height`: `Number` - Current block number or the block number if specified.
+  - `data`: `Array` - An array of all proposals.
 
 #### Example
 

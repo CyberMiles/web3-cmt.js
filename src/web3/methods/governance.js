@@ -23,9 +23,15 @@ var Governance = function(web3) {
 }
 
 var methods = function() {
-  var propose = new Method({
-    name: "propose",
+  var proposeRecoverFund = new Method({
+    name: "proposeRecoverFund",
     call: "cmt_propose",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
+  var proposeChangeParam = new Method({
+    name: "proposeChangeParam",
+    call: "cmt_proposeChangeParam",
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
@@ -41,7 +47,7 @@ var methods = function() {
     params: 0
   })
 
-  return [propose, vote, list]
+  return [proposeRecoverFund, proposeChangeParam, vote, list]
 }
 
 var properties = function() {
