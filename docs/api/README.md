@@ -458,25 +458,34 @@ Query the current stake status of a specific validator.
 var info = web3.cmt.stake.validator.query(
   "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc"
 )
-console.log(info)
+console.log(JSON.stringify(info, null, 2))
 /*
 { 
-  height: 318,
-  data: { 
-    pub_key: {
-      type: 'AC26791624DE60',
-      value: 'BSQWyJ3030QILZS8gO+35XtbNYfoD29G/HJGKXLYV+A='
+  "height": 38,
+  "data": {
+    "pub_key": {
+      "type": "AC26791624DE60",
+      "value": "6DwZIWYS2BJb0XKtQT7PSJ4f8Qe+hbdn6CHVasl5NYc="
     },
-    owner_address: '0x7eff122b94897ea5b0e2a9abf47b86337fafebdc',
-    shares: '35579353405967526756590',
-    voting_power: 35552,
-    max_shares: '1000000000000000000',
-    comp_rate: '0.5',
-    created_at: '2018-05-22T09:09:03Z',
-    updated_at: '2018-05-23T06:29:53Z',
-    description: { website: '', location: '', details: '' },
-    verified: 'N',
-    active: 'Y'
+    "owner_address": "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+    "shares": "3359212523592085235879",
+    "voting_power": 3359,
+    "max_shares": "10000000000000000000000",
+    "comp_rate": "0.5",
+    "created_at": "2018-07-03T10:44:40Z",
+    "updated_at": "2018-07-03T14:39:48Z",
+    "description": {
+      "name": "",
+      "website": "",
+      "location": "",
+      "email": "",
+      "profile": ""
+    },
+    "verified": "N",
+    "active": "Y",
+    "block_height": 1,
+    "rank": 0,
+    "state": ""
   }
 }
 */
@@ -508,26 +517,37 @@ Returns a list of all current validators and validator candidates.
 
 ```js
 var info = web3.cmt.stake.validator.list()
-console.log(info)
+console.log(JSON.stringify(info, null, 2))
 /*
 { 
-  height: 318,
-  data: [{ 
-    pub_key: {
-      type: 'AC26791624DE60',
-      value: 'BSQWyJ3030QILZS8gO+35XtbNYfoD29G/HJGKXLYV+A='
-    },
-    owner_address: '0x7eff122b94897ea5b0e2a9abf47b86337fafebdc',
-    shares: '35579353405967526756590',
-    voting_power: 35552,
-    max_shares: '1000000000000000000',
-    comp_rate: '0.5',
-    created_at: '2018-05-22T09:09:03Z',
-    updated_at: '2018-05-23T06:29:53Z',
-    description: { website: '', location: '', details: '' },
-    verified: 'N',
-    active: 'Y'
-  }]
+  "height": 38,
+  "data": [
+    {
+      "pub_key": {
+        "type": "AC26791624DE60",
+        "value": "6DwZIWYS2BJb0XKtQT7PSJ4f8Qe+hbdn6CHVasl5NYc="
+      },
+      "owner_address": "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+      "shares": "3080166354134956874646",
+      "voting_power": 3080,
+      "max_shares": "10000000000000000000000",
+      "comp_rate": "0.5",
+      "created_at": "2018-07-03T10:44:40Z",
+      "updated_at": "2018-07-03T14:37:57Z",
+      "description": {
+        "name": "",
+        "website": "",
+        "location": "",
+        "email": "",
+        "profile": ""
+      },
+      "verified": "N",
+      "active": "Y",
+      "block_height": 1,
+      "rank": 0,
+      "state": ""
+    }
+  ]
 }
 */
 ```
@@ -693,23 +713,25 @@ Query the current stake status of a specific delegator.
 var info = web3.cmt.stake.delegator.query(
   "0x84f444c0405c762afa4ee3e8d8a5b3653ea52549"
 )
-console.log(info)
+console.log(JSON.stringify(info, null, 2))
 /*
 { 
-  height: 318,
-  data: [{
-    "delegator_address": "0x84f444c0405c762afa4ee3e8d8a5b3653ea52549",
-    "pub_key": {
+  "height": 38,
+  "data": [
+    {
+      "delegator_address": "0x84f444c0405c762afa4ee3e8d8a5b3653ea52549",
+      "pub_key": {
         "type": "AC26791624DE60",
-        "value": "BSQWyJ3030QILZS8gO+35XtbNYfoD29G/HJGKXLYV+A="
-    },
-    "delegate_amount": "7000000000000000000",
-    "award_amount": "4560541633663463852",
-    "withdraw_amount": "0",
-    "slash_amount": "0",
-    "created_at": "2018-05-22T10:05:57Z",
-    "updated_at": "2018-05-23T07:59:50Z"
-  }]
+        "value": "6DwZIWYS2BJb0XKtQT7PSJ4f8Qe+hbdn6CHVasl5NYc="
+      },
+      "delegate_amount": "1000000000000000000000",
+      "award_amount": "2536787358701166920300",
+      "withdraw_amount": "0",
+      "slash_amount": "0",
+      "created_at": "2018-07-03T10:44:40Z",
+      "updated_at": "2018-07-03T14:40:58Z"
+    }
+  ]
 }
 */
 ```
@@ -958,25 +980,47 @@ Returns a list of all proposals.
 
 ```js
 var info = web3.cmt.governance.queryProposals()
-console.log(info)
+console.log(JSON.stringify(info, null, 2))
 /*
 { 
-  height: 538,
-  data: [{
-    "Id": "nxZjuPCLxfctbf7bxBMCfHUS8kKOyR62C2KrdwdGUYA=",
-    "Proposer": "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
-    "BlockHeight": 153,
-    "From": "0x85cd5a4d95f391ade6c93d66a204e3cc0fb66d3e",
-    "To": "0xe27513f639808a7e4dede3a44cf1330c26b24cd3",
-    "Amount": "500000000000000000000",
-    "Reason": "Governance test",
-    "ExpireBlockHeight": 60633,
-    "CreatedAt": "2018-05-22T09:35:32Z",
-    "Result": "Approved",
-    "ResultMsg": "",
-    "ResultBlockHeight": 154,
-    "ResultAt": "2018-05-22T09:35:43Z"
-  }]
+  "height": 58,
+  "data": [
+    {
+      "Id": "/YRNInf2DpWJ6KBcS+Xqa+EUiBH3DMgeM2T57tsMd2E=",
+      "Type": "transfer_fund",
+      "Proposer": "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+      "BlockHeight": 15,
+      "ExpireBlockHeight": 20,
+      "CreatedAt": "2018-07-03T14:27:11Z",
+      "Result": "Expired",
+      "ResultMsg": "",
+      "ResultBlockHeight": 20,
+      "ResultAt": "2018-07-03T14:28:01Z",
+      "Detail": {
+        "amount": "16",
+        "from": "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+        "reason": "",
+        "to": "0xd5bb0351974eca5d116eff840a03a9b96d8ba9e7"
+      }
+    },
+    {
+      "Id": "DN6utTAmgX9Iy7naroaKgO2dEbIkwmwRPmmfk35cdEE=",
+      "Type": "change_param",
+      "Proposer": "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+      "BlockHeight": 16,
+      "ExpireBlockHeight": 60496,
+      "CreatedAt": "2018-07-03T14:27:21Z",
+      "Result": "",
+      "ResultMsg": "",
+      "ResultBlockHeight": 0,
+      "ResultAt": "",
+      "Detail": {
+        "name": "gas_price",
+        "reason": "test",
+        "value": "3000000000"
+      }
+    }
+  ]
 }
 */
 ```
