@@ -92,7 +92,9 @@ var properties = function() {
 
 // make override properties configurable
 var _defineProperty = Object.defineProperty
-var props = properties().map(p => p.name)
+var props = properties().map(function(p) {
+  return p.name
+})
 Object.defineProperty = function(obj, prop, descriptor) {
   if (obj instanceof Cmt && props.includes(prop)) {
     descriptor.configurable = true
