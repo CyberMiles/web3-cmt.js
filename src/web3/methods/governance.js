@@ -41,13 +41,24 @@ var methods = function() {
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
-  var list = new Method({
-    name: "queryProposals",
+  var listProposals = new Method({
+    name: "listProposals",
     call: "cmt_queryProposals",
     params: 0
   })
+  var getParams = new Method({
+    name: "getParams",
+    call: "cmt_queryParams",
+    params: 0
+  })
 
-  return [proposeRecoverFund, proposeChangeParam, vote, list]
+  return [
+    proposeRecoverFund,
+    proposeChangeParam,
+    vote,
+    listProposals,
+    getParams
+  ]
 }
 
 var properties = function() {

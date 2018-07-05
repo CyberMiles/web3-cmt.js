@@ -956,17 +956,16 @@ web3.cmt.governance.vote(payload, (err, res) => {
 
 ---
 
-### queryProposals
+### listProposals
 
 ```js
-web3.cmt.governance.queryProposals([height] [, callback])
+web3.cmt.governance.listProposals([callback])
 ```
 
 Returns a list of all proposals.
 
 #### Parameters
 
-- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
@@ -979,7 +978,7 @@ Returns a list of all proposals.
 #### Example
 
 ```js
-var info = web3.cmt.governance.queryProposals()
+var info = web3.cmt.governance.listProposals()
 console.log(JSON.stringify(info, null, 2))
 /*
 { 
@@ -1021,6 +1020,52 @@ console.log(JSON.stringify(info, null, 2))
       }
     }
   ]
+}
+*/
+```
+
+---
+
+### listParams
+
+```js
+web3.cmt.governance.getParams([callback])
+```
+
+Returns current settings of system parameters.
+
+#### Parameters
+
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+
+#### Returns
+
+- `Object` - Result object.
+
+  - `height`: `Number` - Current block number or the block number if specified.
+  - `data`: `Array` - An array of all proposals.
+
+#### Example
+
+```js
+var info = web3.cmt.governance.getParams()
+console.log(JSON.stringify(info, null, 2))
+/*
+{
+  "height": 174,
+  "data": {
+    "hold_account": "0xffffffffffffffffffffffffffffffffffffffff",
+    "max_vals": 4,
+    "self_staking_ratio": "0.1",
+    "inflation_rate": 8,
+    "stake_limit": "0.12",
+    "unstake_wait_period": 60480,
+    "proposal_expire_period": 60480,
+    "declare_candidacy": 1000000,
+    "update_candidacy": 1000000,
+    "governance_proposal": 2000000,
+    "gas_price": 2000000000
+  }
 }
 */
 ```
