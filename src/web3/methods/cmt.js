@@ -96,7 +96,7 @@ var props = properties().map(function(p) {
   return p.name
 })
 Object.defineProperty = function(obj, prop, descriptor) {
-  if (obj instanceof Cmt && props.includes(prop)) {
+  if (obj instanceof Cmt && props.indexOf(prop) > -1) {
     descriptor.configurable = true
   }
   return _defineProperty(obj, prop, descriptor)
