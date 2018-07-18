@@ -591,10 +591,15 @@ Used by a delegator to stake CMTs to a validator.
 #### Example
 
 ```js
+var delegator = "0x38d7b32e7b5056b297baf1a1e950abbaa19ce949"
+var validator = "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc"
+var nonce = web3.cmt.getTransactionCount(delegator)
 var payload = {
-  from: "0x38d7b32e7b5056b297baf1a1e950abbaa19ce949",
-  validatorAddress: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
-  amount: web3.toWei(1000, "cmt")
+  from: delegator,
+  validatorAddress: validator,
+  amount: web3.toWei(1000, "cmt"),
+  cubeBatch: "01",
+  sig: web3.cubeSign(delegator, nonce)
 }
 web3.cmt.stake.delegator.accept(payload, (err, res) => {
   if (!err) {
