@@ -37648,7 +37648,8 @@ var Cmt = function(web3) {
   })
 
   // isSyncing is not supported
-  this.isSyncing = undefined
+  delete this.isSyncing
+  delete this.getSyncing
 
   // restore the original defineProperty
   Object.defineProperty = _defineProperty

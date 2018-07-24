@@ -767,7 +767,7 @@ Propose a fund recovery proposal.
   - `transferTo`: `String` - To account address.
   - `amount`: `String` - Amount of CMTs in Wei.
   - `reason`: `String` - (optional) Reason.
-  - `expire`: `Number` - (optional) Expiration block height. Default to 7 days, measured in block height (`7 * 24 * 60 * 60 / 10`)
+  - `expire`: `Number` - (optional) Timestamp when the proposal will expire. Default to current block time + 7 days.
 
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
@@ -840,7 +840,7 @@ Propose a system parameter change.
   - `name`: `String` - The name of the parameter.
   - `value`: `String` - New value of the parameter.
   - `reason`: `String` - (optional) Reason.
-  - `expire`: `Number` - (optional) Expiration block height. Default to 7 days, measured in block height (`7 * 24 * 60 * 60 / 10`)
+  - `expire`: `Number` - (optional) Timestamp when the proposal will expire. Default to current block time + 7 days.
 
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
