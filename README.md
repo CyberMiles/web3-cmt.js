@@ -1,6 +1,6 @@
 # CyberMiles Javascript API
 
-[![Build Status](https://travis-ci.org/CyberMiles/web3-cmt.js.svg?branch=dev)](https://travis-ci.org/CyberMiles/web3-cmt.js)
+[![Build Status](https://travis-ci.org/CyberMiles/web3-cmt.js.svg?branch=master)](https://travis-ci.org/CyberMiles/web3-cmt.js)
 
 ## Requirement
 
@@ -8,6 +8,12 @@
 - yarn `^1.0.0` or npm `^5.0.0`
 
 ## Installation
+
+```bash
+yarn add web3-cmt  # or npm install web3-cmt
+```
+
+## Package linking (for development only)
 
 ```bash
 # get latest version of web3-cmt.js
@@ -22,10 +28,8 @@ yarn link       # (or `npm link`)
 # goes to directory of your project
 cd /path_to/your_project
 
-# link to local version of web3-cmt package(or `npm link "web3-cmt"`)
-yarn link "web3-cmt"
+# link to local version of web3-cmt package
+yarn link "web3-cmt"  # (or `npm link "web3-cmt"`)
 ```
 
-Note: You need to run a local [Travis node](https://github.com/CyberMiles/travis/tree/develop/README.md) before using it.
-
-[Documentation](https://cybermiles.github.io/web3-cmt.js/)
+[Documentation](https://cybermiles.github.io/web3-cmt.js/api/)

@@ -14,7 +14,7 @@ deploy:
     local-dir: docs/.vuepress/dist
     target-branch: gh-pages
     on:
-      branch: dev
+      branch: master
   - provider: npm
     email: maggie@5milesapp.com
     api_key:
