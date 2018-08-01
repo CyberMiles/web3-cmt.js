@@ -895,13 +895,95 @@ web3.cmt.governance.proposeChangeParam(payload, (err, res) => {
 
 ---
 
+### proposeDeployLibEni
+
+```js
+web3.cmt.governance.proposeDeployLibEni(deployLibEniObject [, callback])
+```
+
+Propose a new library for ENI.
+
+#### Parameters
+
+- `deployLibEniObject`: `Object` - The new ENI library proposal object.
+
+  - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. Must be a validator.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `name`: `String` - The name of the library.
+  - `version`: `String` - Version number of the library.
+  - `fileUrl`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the URL to retrieve the library file.
+  - `md5`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the MD5 of the library file.
+  - `reason`: `String` - (optional) Reason.
+  - `expire`: `Number` - (optional) Timestamp when the proposal will expire. Default to current block time + 7 days.
+
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+
+#### Returns
+
+- `Object` - Result object.
+
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed. If successful, the `ProposalID` will be set in the `data` property, for validators to vote later.
+
+#### Example
+
+```js
+var payload = {
+  from: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+  name: "reverse.so",
+  version: "1.0",
+  fileUrl:
+    '{"ubuntu":"http://45.77.171.204/eni_reverse_ubuntu16.04.so", "centos":"http://45.77.171.204/eni_reverse_centos7.so"}',
+  md5:
+    '{"ubuntu":"b440ff88be3fb2d47da4f5b34577d92477bb7f01b52d9d3a09557ea83c97a696211453ff75fb3446b1e99e1a520df2d6539b47bc5151f2689598ecbba23e906d", "centos":"04ae4cd328bd550aae2c18f9fb2945ab849ec763a075f2d6e6010a676dba526082233722827d684a0de733c48b7faa2846094026657d42c3bf360a313c7b0851"}'
+}
+web3.cmt.governance.proposeDeployLibEni(payload, (err, res) => {
+  if (!err) {
+    console.log(res)
+    /*
+    {
+      check_tx: { fee: {} },
+      deliver_tx: {
+        data: 'si5Q/kUx/MyP3u1WRhG3LncLlOPAuDGB3kC3RBPcu+s=',
+        gasUsed": '2000000',
+        fee: {
+            key: 'R2FzRmVl',
+            value: "4000000000000000'
+        }
+      },
+      hash: '37C51D16BA062A69CD5921E45326E9ED47EF0D77',
+      height: 102
+    }
+    */
+  } else {
+    console.log(err)
+    /*
+    {
+      check_tx: { code: 20, log: 'Can not find fileurl for current os', fee: {} },
+      deliver_tx: { fee: {} },
+      hash: 'B02B62FFE66B4C04DF0E4161F934AF51C1312E31',
+      height: 0
+    }
+    */
+  }
+})
+```
+
+---
+
 ### vote
 
 ```js
 web3.cmt.governance.vote(voteObject [, callback])
 ```
 
-Propose a fund recovery proposal.
+Vote on proposals of making changes to the system state. Here are some use cases:
+
+- Vote to change system wide parameters such as the system inflation rate.
+- Vote to accept new native libraries for ENI.
+- Vote to recover funds for users.
 
 #### Parameters
 
