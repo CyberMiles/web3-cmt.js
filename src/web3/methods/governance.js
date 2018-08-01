@@ -25,13 +25,19 @@ var Governance = function(web3) {
 var methods = function() {
   var proposeRecoverFund = new Method({
     name: "proposeRecoverFund",
-    call: "cmt_propose",
+    call: "cmt_proposeTransferFund",
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var proposeChangeParam = new Method({
     name: "proposeChangeParam",
     call: "cmt_proposeChangeParam",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
+  var proposeDeployLibEni = new Method({
+    name: "proposeDeployLibEni",
+    call: "cmt_proposeDeployLibEni",
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
