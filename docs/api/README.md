@@ -767,7 +767,10 @@ Propose a fund recovery proposal.
   - `transferTo`: `String` - To account address.
   - `amount`: `String` - Amount of CMTs in Wei.
   - `reason`: `String` - (optional) Reason.
-  - `expire`: `Number` - (optional) Timestamp when the proposal will expire. Default to current block time + 7 days.
+  - `expireBlockHeight`: `Number` - (optional) Expiration block height.
+  - `expireTimestamp`: `Number` - (optional) Timestamp when the proposal will expire.
+
+  _Note: You can specify expiration block height **or** timestamp, but not both. If none is specified, a default of 7 days, as measured in block height(`7 * 24 * 60 * 60 / 10`), will be used._
 
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
@@ -840,7 +843,10 @@ Propose a system parameter change.
   - `name`: `String` - The name of the parameter.
   - `value`: `String` - New value of the parameter.
   - `reason`: `String` - (optional) Reason.
-  - `expire`: `Number` - (optional) Timestamp when the proposal will expire. Default to current block time + 7 days.
+  - `expireBlockHeight`: `Number` - (optional) Expiration block height.
+  - `expireTimestamp`: `Number` - (optional) Timestamp when the proposal will expire.
+
+  _Note: You can specify expiration block height **or** timestamp, but not both. If none is specified, a default of 7 days, as measured in block height(`7 * 24 * 60 * 60 / 10`), will be used._
 
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
@@ -914,7 +920,10 @@ Propose a new library for ENI.
   - `fileUrl`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the URL to retrieve the library file.
   - `md5`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the MD5 of the library file.
   - `reason`: `String` - (optional) Reason.
-  - `expire`: `Number` - (optional) Timestamp when the proposal will expire. Default to current block time + 7 days.
+  - `expireBlockHeight`: `Number` - (optional) Expiration block height.
+  - `expireTimestamp`: `Number` - (optional) Timestamp when the proposal will expire.
+
+  _Note: You can specify expiration block height **or** timestamp, but not both. If none is specified, a default of 7 days, as measured in block height(`7 * 24 * 60 * 60 / 10`), will be used._
 
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
