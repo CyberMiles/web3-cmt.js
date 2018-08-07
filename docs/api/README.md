@@ -916,7 +916,7 @@ Propose a new library for ENI.
   - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. Must be a validator.
   - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
   - `name`: `String` - The name of the library.
-  - `version`: `String` - Version number of the library.
+  - `version`: `String` - Version of the library, data format: vX.Y.Z, where X, Y, and Z are non-negative integers.
   - `fileUrl`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the URL to retrieve the library file.
   - `md5`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the MD5 of the library file.
   - `reason`: `String` - (optional) Reason.
@@ -941,8 +941,8 @@ Propose a new library for ENI.
 ```js
 var payload = {
   from: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
-  name: "reverse.so",
-  version: "1.0",
+  name: "reverse",
+  version: "v1.0.0",
   fileUrl:
     '{"ubuntu":"http://45.77.171.204/eni_reverse_ubuntu16.04.so", "centos":"http://45.77.171.204/eni_reverse_centos7.so"}',
   md5:
