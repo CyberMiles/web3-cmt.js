@@ -61,6 +61,7 @@ var methods = function() {
   return [
     proposeRecoverFund,
     proposeChangeParam,
+    proposeDeployLibEni,
     vote,
     listProposals,
     getParams
