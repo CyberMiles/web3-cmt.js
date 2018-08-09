@@ -25,6 +25,5 @@ MyWeb3.prototype.constructor = MyWeb3
 
 MyWeb3.prototype.toWei = utils.toWei
 MyWeb3.prototype.fromWei = utils.fromWei
-MyWeb3.prototype.cubeSign = utils.cubeSign
 
 module.exports = MyWeb3

@@ -1,8 +1,5 @@
 var BigNumber = require("bignumber.js")
 var utils = require("web3/lib/utils/utils")
-var fs = require("fs")
-var path = require("path")
-var crypto = require("crypto")
 
 /**
  * @namespace web3
@@ -110,23 +107,7 @@ var toWei = function(number, unit) {
   return utils.isBigNumber(number) ? returnValue : returnValue.toString(10)
 }
 
-var privateKey = fs.readFileSync(path.join(__dirname, "cube_priv.key"), "utf8")
-
-var cubeSign = function(from, nonce) {
-  var message = from + "|" + nonce
-
-  var signer = crypto.createSign("sha256")
-  signer.write(message)
-  signer.end()
-
-  var signature = signer.sign(privateKey)
-  var signature_hex = signature.toString("hex")
-
-  return signature_hex
-}
-
 module.exports = {
   fromWei: fromWei,
-  toWei: toWei,
-  cubeSign: cubeSign
+  toWei: toWei
 }

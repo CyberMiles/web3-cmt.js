@@ -576,6 +576,8 @@ Used by a delegator to stake CMTs to a validator.
   - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
   - `validatorAddress`: `String` - The address of validator to delegate.
   - `amount`: `String` - Amount of CMTs in Wei to delegate.
+  - `cubeBatch`: `String` - The batch number of the CMT cube. Use "01" for testing.
+  - `sig`: `String` - `delegator_address|nonce` signed by the CMT cube. Check [this](#cube-signature) for how to generate a signature for testing.
 
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
@@ -593,13 +595,13 @@ Used by a delegator to stake CMTs to a validator.
 ```js
 var delegator = "0x38d7b32e7b5056b297baf1a1e950abbaa19ce949"
 var validator = "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc"
-var nonce = web3.cmt.getTransactionCount(delegator)
 var payload = {
   from: delegator,
   validatorAddress: validator,
   amount: web3.toWei(1000, "cmt"),
   cubeBatch: "01",
-  sig: web3.cubeSign(delegator, nonce)
+  sig:
+    "2da4306e2aedc44ad482bad5ff9c98bf93faa00f1872e6d1c01170cf76ce2ff69033feae0643184af185048411a2c83e9e98db53e058a30456773d1bd5ffbfdd3ed1346932bf3a333b8a6d80fbe45870404bbc5a4e3f6ae7b2134522188a10e30fa1ed6c59755e7576ad1614a62f09b837c0492e8db8f98baa7e7d68e5a733df"
 }
 web3.cmt.stake.delegator.accept(payload, (err, res) => {
   if (!err) {
@@ -624,6 +626,42 @@ web3.cmt.stake.delegator.accept(payload, (err, res) => {
     */
   }
 })
+```
+
+#### Cube signature
+
+```js
+var crypto = require("crypto")
+
+// this private key is for testing only, use it together with cubeBatch "01"
+var privateKey = `-----BEGIN RSA PRIVATE KEY-----
+MIICXQIBAAKBgQCiWpvDnwYFTqgSWPlA3VO8u+Yv9r8QGlRaYZFszUZEXUQxquGl
+FexMSVyFeqYjIokfPOEHHx2voqWgi3FKKlp6dkxwApP3T22y7Epqvtr+EfNybRta
+15snccZy47dY4UcmYxbGWFTaL66tz22pCAbjFrxY3IxaPPIjDX+FiXdJWwIDAQAB
+AoGAOc63XYz20Nbz4yyI+36S/UWOLY/W8f3eARxycmIY3eizilfE5koLDBKm/ePw
+2dvHJTdBDI8Yu9vWy3Y7DWRNOHJKdcc1gGCR36cJFc4/h02zdaK+CK4eAaZLXhdK
+H8DljEx6QAeRtxVLZGeYa4actY+3GeujYvkQ5QwNprchTSECQQDO4VMmLB+iIT/N
+jnADYOuWKe3iLBoTKHmVfAaTRMMeHATMkpgyVzTLO7jMYCWy7+S0DL4wDNUTQv+P
+Nna/hrAxAkEAyObfMAgjnW6s+CGoN+yWtdBC0LvDXDrzaT3KqmHxK2iCg2kQ9R6P
+0vCvGJytuPxmIVZn54+KpKfR6ok6RJSbSwJAF+CRxDobfI7x2juyWfF5v18fgZct
+e0CUp9gkuiKZkoQRWbshrc263ioKbiw6rahacR13ZfxVK1/0NwdGNVzKQQJBAJpw
+QGpgF2DSz8z/sp0rFsA1lOd5L7ka6Dui8MUB/a9s68exYQPNtqpls3SsHS/zd19x
+WPa9dcsV51zwmQZXZvkCQQChnQLBs6BbH6O85ePXSSbe7RUvHua6EEkmCNkIw+vT
+3Jqmk4ecxCzmEv3xbzrCdgOhfjxqjrsqLLK6BH+lJsWS
+-----END RSA PRIVATE KEY-----`
+
+var address = "0x38d7b32e7b5056b297baf1a1e950abbaa19ce949"
+var nonce = 5
+var message = address + "|" + nonce
+
+var signer = crypto.createSign("sha256")
+signer.write(message)
+signer.end()
+
+var signature = signer.sign(privateKey)
+var signature_hex = signature.toString("hex")
+console.log(signature_hex)
+// 2da4306e2aedc44ad482bad5ff9c98bf93faa00f1872e6d1c01170cf76ce2ff69033feae0643184af185048411a2c83e9e98db53e058a30456773d1bd5ffbfdd3ed1346932bf3a333b8a6d80fbe45870404bbc5a4e3f6ae7b2134522188a10e30fa1ed6c59755e7576ad1614a62f09b837c0492e8db8f98baa7e7d68e5a733df
 ```
 
 ---
