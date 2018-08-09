@@ -37647,7 +37647,7 @@ var Cmt = function(web3) {
     p.setRequestManager(self._requestManager)
   })
 
-  // isSyncing is not supported
+  // isSyncing/getSyncing are not supported
   delete this.isSyncing
   delete this.getSyncing
 
@@ -37686,26 +37686,33 @@ var methods = function() {
     params: 1,
     inputFormatter: [null]
   })
-
-  var getBlock = new Method({
-    name: "getBlock",
+  var getCmtBlock = new Method({
+    name: "getCmtBlock",
     call: "cmt_getBlockByNumber",
     params: 1
   })
 
-  var getTransaction = new Method({
-    name: "getTransaction",
+  var getCmtTransaction = new Method({
+    name: "getCmtTransaction",
     call: "cmt_getTransactionByHash",
     params: 1
   })
 
-  var getTransactionFromBlock = new Method({
-    name: "getTransactionFromBlock",
+  var getCmtTransactionFromBlock = new Method({
+    name: "getCmtTransactionFromBlock",
     call: "cmt_getTransactionFromBlock",
     params: 2
   })
 
-  return [sendTx, sendRawTx, sendTransaction, sendRawTransaction]
+  return [
+    sendTx,
+    sendRawTx,
+    sendTransaction,
+    sendRawTransaction,
+    getCmtBlock,
+    getCmtTransaction,
+    getCmtTransactionFromBlock
+  ]
 }
 
 var properties = function() {
@@ -37812,13 +37819,19 @@ var Governance = function(web3) {
 var methods = function() {
   var proposeRecoverFund = new Method({
     name: "proposeRecoverFund",
-    call: "cmt_propose",
+    call: "cmt_proposeTransferFund",
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
   var proposeChangeParam = new Method({
     name: "proposeChangeParam",
     call: "cmt_proposeChangeParam",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
+  var proposeDeployLibEni = new Method({
+    name: "proposeDeployLibEni",
+    call: "cmt_proposeDeployLibEni",
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
@@ -37842,6 +37855,7 @@ var methods = function() {
   return [
     proposeRecoverFund,
     proposeChangeParam,
+    proposeDeployLibEni,
     vote,
     listProposals,
     getParams

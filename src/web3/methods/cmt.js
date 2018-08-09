@@ -60,26 +60,33 @@ var methods = function() {
     params: 1,
     inputFormatter: [null]
   })
-
-  var getBlock = new Method({
-    name: "getBlock",
+  var getCmtBlock = new Method({
+    name: "getCmtBlock",
     call: "cmt_getBlockByNumber",
     params: 1
   })
 
-  var getTransaction = new Method({
-    name: "getTransaction",
+  var getCmtTransaction = new Method({
+    name: "getCmtTransaction",
     call: "cmt_getTransactionByHash",
     params: 1
   })
 
-  var getTransactionFromBlock = new Method({
-    name: "getTransactionFromBlock",
+  var getCmtTransactionFromBlock = new Method({
+    name: "getCmtTransactionFromBlock",
     call: "cmt_getTransactionFromBlock",
     params: 2
   })
 
-  return [sendTx, sendRawTx, sendTransaction, sendRawTransaction]
+  return [
+    sendTx,
+    sendRawTx,
+    sendTransaction,
+    sendRawTransaction,
+    getCmtBlock,
+    getCmtTransaction,
+    getCmtTransactionFromBlock
+  ]
 }
 
 var properties = function() {
