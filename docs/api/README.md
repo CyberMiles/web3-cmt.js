@@ -601,7 +601,7 @@ var payload = {
   amount: web3.toWei(1000, "cmt"),
   cubeBatch: "01",
   sig:
-    "2da4306e2aedc44ad482bad5ff9c98bf93faa00f1872e6d1c01170cf76ce2ff69033feae0643184af185048411a2c83e9e98db53e058a30456773d1bd5ffbfdd3ed1346932bf3a333b8a6d80fbe45870404bbc5a4e3f6ae7b2134522188a10e30fa1ed6c59755e7576ad1614a62f09b837c0492e8db8f98baa7e7d68e5a733df"
+    "036b6dddefdb1d798a9847121dde8c38713721869a24c77abe2249534f6d98622727720994f663ee9cc446c6e246781caa3a88b7bff78a4ffc9de7c7eded00caef61c2ea36be6a0763ed2bf5af4cf38e38bd6b257857f314c4bbb902d83c8b4413ba2f880d24bf0d6874e392807dfbc2bd03910c58989bc69a9090eddefe8e55"
 }
 web3.cmt.stake.delegator.accept(payload, (err, res) => {
   if (!err) {
@@ -654,14 +654,20 @@ var address = "0x38d7b32e7b5056b297baf1a1e950abbaa19ce949"
 var nonce = 5
 var message = address + "|" + nonce
 
-var signer = crypto.createSign("sha256")
-signer.write(message)
-signer.end()
-
-var signature = signer.sign(privateKey)
+var hash = crypto
+  .createHash("sha256")
+  .update(message)
+  .digest("hex")
+let signature = crypto.privateDecrypt(
+  {
+    key: privateKey,
+    padding: crypto.constants.RSA_NO_PADDING
+  },
+  new Buffer(hash, "hex")
+)
 var signature_hex = signature.toString("hex")
 console.log(signature_hex)
-// 2da4306e2aedc44ad482bad5ff9c98bf93faa00f1872e6d1c01170cf76ce2ff69033feae0643184af185048411a2c83e9e98db53e058a30456773d1bd5ffbfdd3ed1346932bf3a333b8a6d80fbe45870404bbc5a4e3f6ae7b2134522188a10e30fa1ed6c59755e7576ad1614a62f09b837c0492e8db8f98baa7e7d68e5a733df
+// 036b6dddefdb1d798a9847121dde8c38713721869a24c77abe2249534f6d98622727720994f663ee9cc446c6e246781caa3a88b7bff78a4ffc9de7c7eded00caef61c2ea36be6a0763ed2bf5af4cf38e38bd6b257857f314c4bbb902d83c8b4413ba2f880d24bf0d6874e392807dfbc2bd03910c58989bc69a9090eddefe8e55
 ```
 
 ---
