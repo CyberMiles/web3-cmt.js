@@ -15473,6 +15473,12 @@ var methods = function() {
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
+  var setCompRate = new Method({
+    name: "setCompRate",
+    call: "cmt_setCompRate",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
 
   var list = new Method({
     name: "list",
@@ -15490,7 +15496,7 @@ var methods = function() {
     ]
   })
 
-  return [declare, withdraw, update, verify, activate, list, query]
+  return [declare, withdraw, update, verify, activate, setCompRate, list, query]
 }
 
 var properties = function() {

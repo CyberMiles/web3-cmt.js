@@ -149,7 +149,7 @@ var payload = {
   from: "0xc4abd0339eb8d57087278718986382264244252f",
   pubKey: "051FUvSNJmVL4UiFL7ucBr3TnGqG6a5JgUIgKf4UOIA=",
   maxAmount: web3.toWei(1000, "cmt"),
-  comp_rate: "0.2"
+  compRate: "0.2"
 }
 web3.cmt.stake.validator.declare(payload, (err, res) => {
   if (!err) {
@@ -157,7 +157,13 @@ web3.cmt.stake.validator.declare(payload, (err, res) => {
     /*
     {
       check_tx: { fee: {} },
-      deliver_tx: { fee: {} },
+      deliver_tx: {
+        "gasUsed": "1000000",
+        "fee": {
+          "key": "R2FzRmVl",
+          "value": "2000000000000000"
+        }
+      },
       hash: '1573F39376D8C10C6B890861CD25FD0BA917556F',
       height: 271
     }
@@ -225,7 +231,13 @@ web3.cmt.stake.validator.update(payload, (err, res) => {
     /*
     {
       check_tx: { fee: {} },
-      deliver_tx: { fee: {} },
+      deliver_tx: {
+        "gasUsed": "1000000",
+        "fee": {
+          "key": "R2FzRmVl",
+          "value": "2000000000000000"
+        }
+      },
       hash: '1B11C4D5EA9664DB1DD3A9CDD86741D6C8E226E9',
       height: 297
     }
@@ -422,6 +434,79 @@ web3.cmt.stake.validator.activate(payload, (err, res) => {
       },
       deliver_tx: { fee: {} },
       "hash": "FB70A78AD62A0E0B24194CA951725770B2EFBC0A",
+      "height": 0
+    }
+    */
+  }
+})
+```
+
+---
+
+### setCompRate
+
+```js
+web3.cmt.stake.validator.setCompRate(compRate [, callback])
+```
+
+Allows a validator to update the compensation rate for its delegators.
+
+#### Parameters
+
+- `compRate`: `Object` - The validator object to activate.
+
+  - `from`: `String` - The address for the validator. Uses the `web3.cmt.defaultAccount` property, if not specified.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `delegatorAddress`: `String` - The adddress of delegator.
+  - `compRate`: `String` - New compensation rate to set for the delegator. Compensation rate is the percentage of block awards to be distributed back to the validators.
+
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+
+#### Returns
+
+- `Object` - Result object.
+
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
+
+#### Example
+
+```js
+var payload = {
+  from: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+  delegatorAddress: "0x38d7b32e7b5056b297baf1a1e950abbaa19ce949",
+  compRate: "0.3"
+}
+web3.cmt.stake.validator.compRate(payload, (err, res) => {
+  if (!err) {
+    console.log(res)
+    /*
+    {
+      check_tx: { fee: {} },
+      deliver_tx: {
+        "gasUsed": "1000000",
+        "fee": {
+          "key": "R2FzRmVl",
+          "value": "2000000000000000"
+        }
+      },
+      hash: 'C61BAEEEF637CB554157261DF27F7D1CFE50F251',
+      height: 393
+    }
+    */
+  } else {
+    console.log(err)
+    /*
+    {
+      "check_tx": {
+        "code": 21,
+        "log": "No corresponding delegation exists",
+        "fee": {}
+      },
+      deliver_tx: { fee: {} },
+      "hash": "DD7135A352FBE2173DCEB1AA1F73734D00095699",
       "height": 0
     }
     */
