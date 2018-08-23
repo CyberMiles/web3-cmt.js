@@ -456,7 +456,7 @@ Query the current stake status of a specific validator.
 
 ```js
 var info = web3.cmt.stake.validator.query(
-  "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc"
+  "0x7eFf122b94897EA5b0E2A9abf47B86337FAfebdC"
 )
 console.log(JSON.stringify(info, null, 2))
 /*
@@ -464,28 +464,28 @@ console.log(JSON.stringify(info, null, 2))
   "height": 38,
   "data": {
     "pub_key": {
-      "type": "AC26791624DE60",
-      "value": "6DwZIWYS2BJb0XKtQT7PSJ4f8Qe+hbdn6CHVasl5NYc="
+      "type": "tendermint/PubKeyEd25519",
+      "value": "DuoqmCIcqTzzeBLhz1qt+Q+eCAAHb6bmPng6D1k66Ys="
     },
-    "owner_address": "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
-    "shares": "3359212523592085235879",
-    "voting_power": 3359,
-    "max_shares": "10000000000000000000000",
-    "comp_rate": "0.5",
-    "created_at": "2018-07-03T10:44:40Z",
-    "updated_at": "2018-07-03T14:39:48Z",
+    "owner_address": "0x7eFf122b94897EA5b0E2A9abf47B86337FAfebdC",
+    "shares": "90194330251710238108877",
+    "voting_power": 90194,
+    "max_shares": "830667891977041679569910",
+    "comp_rate": "0.2",
+    "created_at": "2018-07-03T10:04:20Z",
+    "updated_at": "2018-07-03T14:35:52Z",
     "description": {
-      "name": "",
-      "website": "",
-      "location": "",
-      "email": "",
-      "profile": ""
+      "name": "Aaron",
+      "website": "https://cube-api-test.cybermiles.io",
+      "location": "CN,ASIA",
+      "email": "aaron@wespoke.com",
+      "profile": "Donec rutrum congue leo eget malesuada. Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget tortor risus."
     },
     "verified": "N",
     "active": "Y",
     "block_height": 1,
     "rank": 0,
-    "state": ""
+    "state": "Validator"
   }
 }
 */
@@ -524,28 +524,28 @@ console.log(JSON.stringify(info, null, 2))
   "data": [
     {
       "pub_key": {
-        "type": "AC26791624DE60",
-        "value": "6DwZIWYS2BJb0XKtQT7PSJ4f8Qe+hbdn6CHVasl5NYc="
+        "type": "tendermint/PubKeyEd25519",
+        "value": "DuoqmCIcqTzzeBLhz1qt+Q+eCAAHb6bmPng6D1k66Ys="
       },
-      "owner_address": "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
-      "shares": "3080166354134956874646",
-      "voting_power": 3080,
-      "max_shares": "10000000000000000000000",
-      "comp_rate": "0.5",
-      "created_at": "2018-07-03T10:44:40Z",
-      "updated_at": "2018-07-03T14:37:57Z",
+      "owner_address": "0x7eFf122b94897EA5b0E2A9abf47B86337FAfebdC",
+      "shares": "89884499451603693478569",
+      "voting_power": 89884,
+      "max_shares": "830667891977041679569910",
+      "comp_rate": "0.2",
+      "created_at": "2018-07-03T10:04:20Z",
+      "updated_at": "2018-07-03T14:35:52Z",
       "description": {
-        "name": "",
-        "website": "",
-        "location": "",
-        "email": "",
-        "profile": ""
+        "name": "Aaron",
+        "website": "https://cube-api-test.cybermiles.io",
+        "location": "CN,ASIA",
+        "email": "aaron@wespoke.com",
+        "profile": "Donec rutrum congue leo eget malesuada. Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget tortor risus."
       },
       "verified": "N",
       "active": "Y",
       "block_height": 1,
       "rank": 0,
-      "state": ""
+      "state": "Validator"
     }
   ]
 }
@@ -760,7 +760,7 @@ Query the current stake status of a specific delegator.
 
 ```js
 var info = web3.cmt.stake.delegator.query(
-  "0x84f444c0405c762afa4ee3e8d8a5b3653ea52549"
+  "0x3a436deae68b7d4c8ff9f1cb0498913a397472d7"
 )
 console.log(JSON.stringify(info, null, 2))
 /*
@@ -768,17 +768,17 @@ console.log(JSON.stringify(info, null, 2))
   "height": 38,
   "data": [
     {
-      "delegator_address": "0x84f444c0405c762afa4ee3e8d8a5b3653ea52549",
+      "delegator_address": "0x3a436deae68b7d4c8ff9f1cb0498913a397472d7",
       "pub_key": {
-        "type": "AC26791624DE60",
-        "value": "6DwZIWYS2BJb0XKtQT7PSJ4f8Qe+hbdn6CHVasl5NYc="
+        "type": "tendermint/PubKeyEd25519",
+        "value": "r7fTVtIlliUUCfGEHuj4qnHcxB7dfRC1fFUDkSHYIAg="
       },
       "delegate_amount": "1000000000000000000000",
-      "award_amount": "2536787358701166920300",
+      "award_amount": "53858698031300841769",
       "withdraw_amount": "0",
       "slash_amount": "0",
-      "created_at": "2018-07-03T10:44:40Z",
-      "updated_at": "2018-07-03T14:40:58Z"
+      "created_at": "2018-07-03T10:24:31Z",
+      "updated_at": "2018-07-03T14:46:06Z"
     }
   ]
 }
