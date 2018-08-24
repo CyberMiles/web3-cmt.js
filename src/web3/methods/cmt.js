@@ -69,12 +69,14 @@ var methods = function() {
   var getCmtTransaction = new Method({
     name: "getCmtTransaction",
     call: "cmt_getTransactionByHash",
-    params: 1
+    params: 1,
+    outputFormatter: formatters.outputTransactionFormatter
   })
   var getCmtTransactionFromBlock = new Method({
     name: "getCmtTransactionFromBlock",
     call: "cmt_getTransactionFromBlock",
-    params: 2
+    params: 2,
+    outputFormatter: formatters.outputTransactionFormatter
   })
 
   return [
