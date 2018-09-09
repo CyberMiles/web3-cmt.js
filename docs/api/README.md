@@ -804,7 +804,7 @@ Query the current stake status of a specific validator.
 #### Parameters
 
 - `validatorAddress`: `String` - The validator address.
-- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
+- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain. NOT IMPLEMENTED YET.
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
@@ -865,7 +865,7 @@ Returns a list of all current validators and validator candidates.
 
 #### Parameters
 
-- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
+- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain. NOT IMPLEMENTED YET.
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
@@ -1108,7 +1108,7 @@ Query the current stake status of a specific delegator.
 #### Parameters
 
 - `delegatorAddress`: `String` - The delegator address.
-- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
+- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain. NOT IMPLEMENTED YET.
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns
@@ -1533,13 +1533,14 @@ console.log(JSON.stringify(info, null, 2))
 ### listParams
 
 ```js
-web3.cmt.governance.getParams([callback])
+web3.cmt.governance.getParams([height] [,callback])
 ```
 
 Returns current settings of system parameters.
 
 #### Parameters
 
+- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
 #### Returns

@@ -55,7 +55,8 @@ var methods = function() {
   var getParams = new Method({
     name: "getParams",
     call: "cmt_queryParams",
-    params: 0
+    params: 1,
+    inputFormatter: [formatters.inputDefaultHeightFormatter]
   })
 
   return [
