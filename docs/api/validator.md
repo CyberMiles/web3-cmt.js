@@ -532,3 +532,43 @@ console.log(JSON.stringify(info, null, 2))
 }
 */
 ```
+
+---
+
+## awardInfos
+
+```js
+web3.cmt.stake.validator.awardInfos([height] [, callback])
+```
+
+Returns award information of all current validators and backup validators.
+
+### Parameters
+
+- `height`: `Number` - (optional) The block number. Default to 0, means current head of the blockchain.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+
+### Returns
+
+- `Object` - Result object.
+
+  - `height`: `Number` - Current block number or the block number if specified.
+  - `data`: `Array` - An array of all current validators and validator candidates. For details of validator object, see [web3.cmt.stake.queryValidator](#queryvalidator).
+
+### Example
+
+```js
+var info = web3.cmt.stake.validator.awardInfos()
+console.log(JSON.stringify(info, null, 2))
+/*
+{
+  "height": 1196,
+  "data": [
+    {
+      "address": "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+      "state": "",
+      "amount": "25367833587011669202"
+    }
+  ]
+}
+```

@@ -71,8 +71,24 @@ var methods = function() {
       formatters.inputDefaultHeightFormatter
     ]
   })
+  var awardInfos = new Method({
+    name: "awardInfos",
+    call: "cmt_queryAwardInfos",
+    params: 1,
+    inputFormatter: [formatters.inputDefaultHeightFormatter]
+  })
 
-  return [declare, withdraw, update, verify, activate, setCompRate, list, query]
+  return [
+    declare,
+    withdraw,
+    update,
+    verify,
+    activate,
+    setCompRate,
+    list,
+    query,
+    awardInfos
+  ]
 }
 
 var properties = function() {
