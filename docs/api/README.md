@@ -16,7 +16,7 @@ var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"))
 ### Example using HTTP Basic Authentication
 
 ```js
-var Web3 = require("web3")
+var Web3 = require("web3-cmt")
 
 // HttpProvider takes 4 arguments (host, timeout, user, password).
 var web3 = new Web3(
