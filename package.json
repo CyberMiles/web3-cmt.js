@@ -29,7 +29,7 @@
     "gulp-uglify": "^3.0.0",
     "mocha": "^5.0.4",
     "vinyl-source-stream": "^2.0.0",
-    "vuepress": "^0.8.4",
+    "vuepress": "^0.14.4",
     "winston": "^2.4.1"
   }
 }
