@@ -492,7 +492,7 @@ Returns a list of all current validators and validator candidates.
 - `Object` - Result object.
 
   - `height`: `Number` - Current block number or the block number if specified.
-  - `data`: `Array` - An array of all current validators and validator candidates. For details of validator object, see [web3.cmt.stake.queryValidator](#queryvalidator).
+  - `data`: `Array` - An array of all current validators and validator candidates. For details of validator object, see [web3.cmt.stake.validator.query](#query).
 
 ### Example
 
@@ -553,7 +553,7 @@ Returns award information of all current validators and backup validators.
 - `Object` - Result object.
 
   - `height`: `Number` - Current block number or the block number if specified.
-  - `data`: `Array` - An array of all current validators and validator candidates. For details of validator object, see [web3.cmt.stake.queryValidator](#queryvalidator).
+  - `data`: `Array` - An array of award information of all current validators and backup validators.
 
 ### Example
 
