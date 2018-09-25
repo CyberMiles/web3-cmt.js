@@ -71,8 +71,8 @@ var methods = function() {
       formatters.inputDefaultHeightFormatter
     ]
   })
-  var awardInfos = new Method({
-    name: "awardInfos",
+  var queryAwardInfos = new Method({
+    name: "queryAwardInfos",
     call: "cmt_queryAwardInfos",
     params: 1,
     inputFormatter: [formatters.inputDefaultHeightFormatter]
@@ -87,7 +87,7 @@ var methods = function() {
     setCompRate,
     list,
     query,
-    awardInfos
+    queryAwardInfos
   ]
 }
 

@@ -535,10 +535,10 @@ console.log(JSON.stringify(info, null, 2))
 
 ---
 
-## awardInfos
+## queryAwardInfos
 
 ```js
-web3.cmt.stake.validator.awardInfos([height] [, callback])
+web3.cmt.stake.validator.queryAwardInfos([height] [, callback])
 ```
 
 Returns award information of all current validators and backup validators.
@@ -558,7 +558,7 @@ Returns award information of all current validators and backup validators.
 ### Example
 
 ```js
-var info = web3.cmt.stake.validator.awardInfos()
+var info = web3.cmt.stake.validator.queryAwardInfos()
 console.log(JSON.stringify(info, null, 2))
 /*
 {
