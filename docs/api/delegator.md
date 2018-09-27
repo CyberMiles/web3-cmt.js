@@ -215,14 +215,20 @@ console.log(JSON.stringify(info, null, 2))
       "delegator_address": "0x3a436deae68b7d4c8ff9f1cb0498913a397472d7",
       "pub_key": {
         "type": "tendermint/PubKeyEd25519",
-        "value": "r7fTVtIlliUUCfGEHuj4qnHcxB7dfRC1fFUDkSHYIAg="
+        "value": "Rbrzh5DAu53Q/IdP/IxxU9tVVni4kKnPJ1v1bL0TN0s="
       },
-      "delegate_amount": "1000000000000000000000",
-      "award_amount": "53858698031300841769",
+      "validator_address": "0x7eFf122b94897EA5b0E2A9abf47B86337FAfebdC",
+      "delegate_amount": "1000000000000000000000000",
+      "award_amount": "2591143760375906210530",
       "withdraw_amount": "0",
       "slash_amount": "0",
-      "created_at": "2018-07-03T10:24:31Z",
-      "updated_at": "2018-07-03T14:46:06Z"
+      "comp_rate": "1/5",
+      "voting_power": 7738,
+      "created_at": "2018-09-25T08:39:03Z",
+      "updated_at": "2018-09-25T10:42:07Z",
+      "state": "Y",
+      "block_height": 1,
+      "average_staking_date": 0
     }
   ]
 }

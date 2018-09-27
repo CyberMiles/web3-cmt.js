@@ -175,10 +175,10 @@ Propose a new library for ENI.
   - `fileUrl`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the URL array to retrieve the library file.
   - `md5`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the MD5 of the library file.
   - `reason`: `String` - (optional) Reason.
-  - `expireBlockHeight`: `Number` - (optional) Expiration block height.
-  - `expireTimestamp`: `Number` - (optional) Timestamp when the proposal will expire.
+  - `deployBlockHeight`: `Number` - (optional) The block number where the new ENI libaray will deploy.
+  - `deployTimestamp`: `Number` - (optional) Timestamp when the new ENI library will deploy.
 
-  _Note: You can specify expiration block height **or** timestamp, but not both. If none is specified, a default of 7 days, as measured in block height(`7 * 24 * 60 * 60 / 10`), will be used._
+  _Note: You can specify deploy block height **or** timestamp, but not both. If none is specified, a default of 7 days, as measured in block height(`7 * 24 * 60 * 60 / 10`), will be used._
 
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
