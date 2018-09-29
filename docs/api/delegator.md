@@ -221,6 +221,7 @@ console.log(JSON.stringify(info, null, 2))
       "delegate_amount": "1000000000000000000000000",
       "award_amount": "2591143760375906210530",
       "withdraw_amount": "0",
+      "pending_withdraw_amount", "0",
       "slash_amount": "0",
       "comp_rate": "1/5",
       "voting_power": 7738,

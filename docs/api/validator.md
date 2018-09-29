@@ -566,7 +566,7 @@ console.log(JSON.stringify(info, null, 2))
   "data": [
     {
       "address": "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
-      "state": "",
+      "state": "Validator",
       "amount": "25367833587011669202"
     }
   ]
