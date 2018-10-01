@@ -269,7 +269,7 @@ Vote on proposals of making changes to the system state. Here are some use cases
   - `height`: `Number` - The block number where the transaction is in. =0 if failed.
   - `hash`: `String` - Hash of the transaction.
   - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
-  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed. If successful, the `ProposalID` will be set in the `data` property, for validators to vote later.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
 
 ### Example
 
@@ -285,10 +285,7 @@ web3.cmt.governance.vote(payload, (err, res) => {
     /*
     {
       check_tx: { fee: {} },
-      deliver_tx: {
-        data: 'JTUx+ODH0/OSdgfC0Sn66qjn2tX8LfvbiwnArzNpIus=',
-        fee: {}
-      },
+      deliver_tx: { fee: {} },
       hash: '95A004438F89E809657EB119ACBDB42A33725B39',
       height: 561
     }

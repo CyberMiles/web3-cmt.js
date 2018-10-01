@@ -412,6 +412,139 @@ web3.cmt.stake.validator.compRate(payload, (err, res) => {
 
 ---
 
+## updateAccount
+
+```js
+web3.cmt.stake.validator.updateAccount(updateObject [, callback])
+```
+
+A validator requests to update its binding address.
+
+### Parameters
+
+- `updateObject`: `Object` - The validator account update object.
+
+  - `from`: `String` - The address for the validator. Uses the `web3.cmt.defaultAccount` property, if not specified.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `newCandidateAccount`: `String` - The new adddress of the validator.
+
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+
+### Returns
+
+- `Object` - Result object.
+
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed. If successful, the requestId will be set in the data property(base64 encoded), for the new address to accept later.
+
+### Example
+
+```js
+var payload = {
+  from: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+  newCandidateAccount: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc"
+}
+web3.cmt.stake.validator.updateAccount(payload, (err, res) => {
+  if (!err) {
+    console.log(res)
+    /*
+    { 
+      check_tx: { fee: {} },
+      deliver_tx: { 
+        data: 'Mg==', 
+        fee: {} 
+      },
+      hash: '566E2FA6F87BD67A9D58590D641FE41BC5E4A43F',
+      height: 39 
+    }   
+    */
+  } else {
+    console.log(err)
+    /*
+    {
+      "check_tx": {
+        "code": 21,
+        "log": "Bad request",
+        "fee": {}
+      },
+      deliver_tx: { fee: {} },
+      "hash": "F1DD77276ED876E97DB27BFD1EB7A3DAFF76DDAC",
+      "height": 0
+    }
+    */
+  }
+})
+```
+
+---
+
+## acceptAccountUpdate
+
+```js
+web3.cmt.stake.validator.acceptAccountUpdate(acceptObject [, callback])
+```
+
+A validator uses its new address to accept an account updating request.
+
+### Parameters
+
+- `acceptObject`: `Object` - The accept object.
+
+  - `from`: `String` - The new address for the validator. Uses the `web3.cmt.defaultAccount` property, if not specified.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `accountUpdateRequestId`: `int64` - The account updating request id.
+
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+
+### Returns
+
+- `Object` - Result object.
+
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
+
+### Example
+
+```js
+var payload = {
+  from: "0x38d7b32e7b5056b297baf1a1e950abbaa19ce949",
+  accountUpdateRequestId: 1
+}
+web3.cmt.stake.validator.acceptAccountUpdate(payload, (err, res) => {
+  if (!err) {
+    console.log(res)
+    /*
+    { 
+      check_tx: { fee: {} },
+      deliver_tx: { fee: {} },
+      hash: '3E1EE5FACD99E8B9B1E8AB0D5ECB3EEC2636DB89',
+      height: 67 
+    }   
+    */
+  } else {
+    console.log(err)
+    /*
+    {
+      "check_tx": {
+        "code": 20,
+        "log": "Insufficient bond shares",
+        "fee": {}
+      },
+      deliver_tx: { fee: {} },
+      "hash": "3E1EE5FACD99E8B9B1E8AB0D5ECB3EEC2636DB89",
+      "height": 0
+    }
+    */
+  }
+})
+```
+
+---
+
 ## query
 
 ```js
@@ -436,9 +569,7 @@ Query the current stake status of a specific validator.
 ### Example
 
 ```js
-var info = web3.cmt.stake.validator.query(
-  "0x7eFf122b94897EA5b0E2A9abf47B86337FAfebdC"
-)
+var info = web3.cmt.stake.validator.query("0x7eFf122b94897EA5b0E2A9abf47B86337FAfebdC")
 console.log(JSON.stringify(info, null, 2))
 /*
 { 

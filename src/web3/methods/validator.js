@@ -49,6 +49,18 @@ var methods = function() {
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
+  var updateAccount = new Method({
+    name: "updateAccount",
+    call: "cmt_updateCandidacyAccount",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
+  var acceptAccountUpdate = new Method({
+    name: "acceptAccountUpdate",
+    call: "cmt_acceptCandidacyAccountUpdate",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
   var setCompRate = new Method({
     name: "setCompRate",
     call: "cmt_setCompRate",
@@ -66,10 +78,7 @@ var methods = function() {
     name: "query",
     call: "cmt_queryValidator",
     params: 2,
-    inputFormatter: [
-      formatters.inputAddressFormatter,
-      formatters.inputDefaultHeightFormatter
-    ]
+    inputFormatter: [formatters.inputAddressFormatter, formatters.inputDefaultHeightFormatter]
   })
   var queryAwardInfos = new Method({
     name: "queryAwardInfos",
@@ -85,6 +94,8 @@ var methods = function() {
     verify,
     activate,
     setCompRate,
+    updateAccount,
+    acceptAccountUpdate,
     list,
     query,
     queryAwardInfos
