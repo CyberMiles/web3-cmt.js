@@ -175,7 +175,7 @@ Propose a new library for ENI.
   - `fileUrl`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the URL array to retrieve the library file.
   - `md5`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the MD5 of the library file.
   - `reason`: `String` - (optional) Reason.
-  - `deployBlockHeight`: `Number` - (optional) The block number where the new ENI libaray will deploy.
+  - `deployBlockHeight`: `Number` - (optional) The block number where the new ENI library will deploy.
   - `deployTimestamp`: `Number` - (optional) Timestamp when the new ENI library will deploy.
 
   _Note: You can specify deploy block height **or** timestamp, but not both. If none is specified, a default of 7 days, as measured in block height(`7 * 24 * 60 * 60 / 10`), will be used._
@@ -206,6 +206,158 @@ var payload = {
       "centos": "04ae4cd328bd550aae2c18f9fb2945ab849ec763a075f2d6e6010a676dba526082233722827d684a0de733c48b7faa2846094026657d42c3bf360a313c7b0851"}'
 }
 web3.cmt.governance.proposeDeployLibEni(payload, (err, res) => {
+  if (!err) {
+    console.log(res)
+    /*
+    {
+      check_tx: { fee: {} },
+      deliver_tx: {
+        data: 'si5Q/kUx/MyP3u1WRhG3LncLlOPAuDGB3kC3RBPcu+s=',
+        gasUsed": '2000000',
+        fee: {
+            key: 'R2FzRmVl',
+            value: "4000000000000000'
+        }
+      },
+      hash: '37C51D16BA062A69CD5921E45326E9ED47EF0D77',
+      height: 102
+    }
+    */
+  } else {
+    console.log(err)
+    /*
+    {
+      check_tx: { code: 20, log: 'Can not find fileurl for current os', fee: {} },
+      deliver_tx: { fee: {} },
+      hash: 'B02B62FFE66B4C04DF0E4161F934AF51C1312E31',
+      height: 0
+    }
+    */
+  }
+})
+```
+
+---
+
+## proposeRetireProgram
+
+```js
+web3.cmt.governance.proposeRetireProgram(retireProgramObject [, callback])
+```
+
+Propose to retire the program.
+
+### Parameters
+
+- `retireProgramObject`: `Object` - The program retire proposal object.
+
+  - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. Must be a validator.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `preservedValidators`: `String` - A comma seperated validator public key list. Valiators in this list will be preserved, other validators will be deactivated.
+  - `reason`: `String` - (optional) Reason.
+  - `retiredBlockHeight`: `Number` - (optional) The block number where the program will retire. If not specified, a default of 7 days, as measured in block height(`7 * 24 * 60 * 60 / 10`), will be used.
+
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+
+### Returns
+
+- `Object` - Result object.
+
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed. If successful, the `ProposalID` will be set in the `data` property, for validators to vote later.
+
+### Example
+
+```js
+var payload = {
+  from: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+  preservedValidators:
+    "Esdo0ZN+nHduoi/kNqjdQSNFmNyv2M3Tie/eZeC25gM=,X6qJkoWxW8YkEHquJQM7mZcfpt5r+l8V6C8rbg8dEHQ=",
+  reason: "system upgrade"
+}
+web3.cmt.governance.proposeRetireProgram(payload, (err, res) => {
+  if (!err) {
+    console.log(res)
+    /*
+    {
+      check_tx: { fee: {} },
+      deliver_tx: {
+        data: 'si5Q/kUx/MyP3u1WRhG3LncLlOPAuDGB3kC3RBPcu+s=',
+        gasUsed": '2000000',
+        fee: {
+            key: 'R2FzRmVl',
+            value: "4000000000000000'
+        }
+      },
+      hash: '37C51D16BA062A69CD5921E45326E9ED47EF0D77',
+      height: 102
+    }
+    */
+  } else {
+    console.log(err)
+    /*
+    {
+      check_tx: { code: 20, log: 'Found unresolved or approved retiring proposal', fee: {} },
+      deliver_tx: { fee: {} },
+      hash: 'B02B62FFE66B4C04DF0E4161F934AF51C1312E31',
+      height: 0
+    }
+    */
+  }
+})
+```
+
+---
+
+## proposeUpgradeProgram
+
+```js
+web3.cmt.governance.proposeUpgradeProgram(upgradeProgramObject [, callback])
+```
+
+Propose to upgrade the program.
+
+### Parameters
+
+- `upgradeProgramObject`: `Object` - The program upgrade proposal object.
+
+  - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. Must be a validator.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `name`: `String` - The name of the program.
+  - `version`: `String` - Version of the program, data format: vX.Y.Z, where X, Y, and Z are non-negative integers.
+  - `fileUrl`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the URL array to retrieve the program file.
+  - `md5`: `String` - JSON string of key/value pairs. Key is the name of the OS(so far, only ubuntu and centos are supported), value is the MD5 of the file.
+  - `reason`: `String` - (optional) Reason.
+  - `upgradeBlockHeight`: `Number` - (optional) The block number where the new program will deploy. If not specified, a default of 7 days, as measured in block height(`7 * 24 * 60 * 60 / 10`), will be used.
+
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+
+### Returns
+
+- `Object` - Result object.
+
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed. If successful, the `ProposalID` will be set in the `data` property, for validators to vote later.
+
+### Example
+
+```js
+var payload = {
+  from: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+  name: "travis",
+  version: "v1.0.0",
+  fileUrl:
+    '{"ubuntu": ["https://libeni.cybermiles.io/libs/reverse/eni_reverse_1.2.0_ubuntu16.04.so", "http://45.77.171.204/eni_reverse_ubuntu16.04.so"], \
+      "centos": ["https://libeni.cybermiles.io/libs/reverse/eni_reverse_1.2.0_centos7.so", "http://45.77.171.204/eni_reverse_centos7.so"]}',
+  md5:
+    '{"ubuntu": "b440ff88be3fb2d47da4f5b34577d92477bb7f01b52d9d3a09557ea83c97a696211453ff75fb3446b1e99e1a520df2d6539b47bc5151f2689598ecbba23e906d", \
+      "centos": "04ae4cd328bd550aae2c18f9fb2945ab849ec763a075f2d6e6010a676dba526082233722827d684a0de733c48b7faa2846094026657d42c3bf360a313c7b0851"}'
+}
+web3.cmt.governance.proposeUpgradeProgram(payload, (err, res) => {
   if (!err) {
     console.log(res)
     /*

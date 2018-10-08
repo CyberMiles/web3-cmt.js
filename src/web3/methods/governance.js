@@ -41,6 +41,18 @@ var methods = function() {
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
+  var proposeRetireProgram = new Method({
+    name: "proposeRetireProgram",
+    call: "cmt_proposeRetireProgram",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
+  var proposeUpgradeProgram = new Method({
+    name: "proposeUpgradeProgram",
+    call: "cmt_proposeUpgradeProgram",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
   var vote = new Method({
     name: "vote",
     call: "cmt_vote",
@@ -63,6 +75,8 @@ var methods = function() {
     proposeRecoverFund,
     proposeChangeParam,
     proposeDeployLibEni,
+    proposeRetireProgram,
+    proposeUpgradeProgram,
     vote,
     listProposals,
     getParams
