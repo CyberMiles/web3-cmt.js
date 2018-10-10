@@ -284,24 +284,25 @@ web3.cmt.governance.proposeRetireProgram(payload, (err, res) => {
     {
       check_tx: { fee: {} },
       deliver_tx: {
-        data: 'si5Q/kUx/MyP3u1WRhG3LncLlOPAuDGB3kC3RBPcu+s=',
-        gasUsed": '2000000',
-        fee: {
-            key: 'R2FzRmVl',
-            value: "4000000000000000'
-        }
+        data: "SoAy6sskKMSHRyx5o8oa5WQ2pzHelMm+USTedSO5qrU=",
+        gasUsed: "2000000",
+        fee: { key: "R2FzRmVl", value: "4000000000000000" }
       },
-      hash: '37C51D16BA062A69CD5921E45326E9ED47EF0D77',
-      height: 102
+      hash: "66C1E4CF36C915C5A4B940ED746819F112BBDDFC",
+      height: 33
     }
     */
   } else {
     console.log(err)
     /*
     {
-      check_tx: { code: 20, log: 'Found unresolved or approved retiring proposal', fee: {} },
+      check_tx: {
+        code: 20,
+        log: "Found unresolved or approved retiring proposal",
+        fee: {}
+      },
       deliver_tx: { fee: {} },
-      hash: 'B02B62FFE66B4C04DF0E4161F934AF51C1312E31',
+      hash: "CB21F18B1BE7A97F69EA95100E2294D978C74497",
       height: 0
     }
     */
@@ -317,7 +318,7 @@ web3.cmt.governance.proposeRetireProgram(payload, (err, res) => {
 web3.cmt.governance.proposeUpgradeProgram(upgradeProgramObject [, callback])
 ```
 
-Propose to upgrade the program.
+Propose to upgrade the program. NOT IMPLEMENTED YET.
 
 ### Parameters
 
@@ -349,42 +350,14 @@ Propose to upgrade the program.
 var payload = {
   from: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
   name: "travis",
-  version: "v1.0.0",
-  fileUrl:
-    '{"ubuntu": ["https://libeni.cybermiles.io/libs/reverse/eni_reverse_1.2.0_ubuntu16.04.so", "http://45.77.171.204/eni_reverse_ubuntu16.04.so"], \
-      "centos": ["https://libeni.cybermiles.io/libs/reverse/eni_reverse_1.2.0_centos7.so", "http://45.77.171.204/eni_reverse_centos7.so"]}',
-  md5:
-    '{"ubuntu": "b440ff88be3fb2d47da4f5b34577d92477bb7f01b52d9d3a09557ea83c97a696211453ff75fb3446b1e99e1a520df2d6539b47bc5151f2689598ecbba23e906d", \
-      "centos": "04ae4cd328bd550aae2c18f9fb2945ab849ec763a075f2d6e6010a676dba526082233722827d684a0de733c48b7faa2846094026657d42c3bf360a313c7b0851"}'
+  version: "v1.0.0"
+  ...
 }
 web3.cmt.governance.proposeUpgradeProgram(payload, (err, res) => {
   if (!err) {
     console.log(res)
-    /*
-    {
-      check_tx: { fee: {} },
-      deliver_tx: {
-        data: 'si5Q/kUx/MyP3u1WRhG3LncLlOPAuDGB3kC3RBPcu+s=',
-        gasUsed": '2000000',
-        fee: {
-            key: 'R2FzRmVl',
-            value: "4000000000000000'
-        }
-      },
-      hash: '37C51D16BA062A69CD5921E45326E9ED47EF0D77',
-      height: 102
-    }
-    */
   } else {
     console.log(err)
-    /*
-    {
-      check_tx: { code: 20, log: 'Can not find fileurl for current os', fee: {} },
-      deliver_tx: { fee: {} },
-      hash: 'B02B62FFE66B4C04DF0E4161F934AF51C1312E31',
-      height: 0
-    }
-    */
   }
 })
 ```

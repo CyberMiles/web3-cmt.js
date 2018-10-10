@@ -444,34 +444,31 @@ A validator requests to update its binding address.
 ```js
 var payload = {
   from: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
-  newCandidateAccount: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc"
+  newCandidateAccount: "0x283ED77f880D87dBdE8721259F80517A38ae5b4f"
 }
 web3.cmt.stake.validator.updateAccount(payload, (err, res) => {
   if (!err) {
     console.log(res)
     /*
-    { 
+    {
       check_tx: { fee: {} },
-      deliver_tx: { 
-        data: 'Mg==', 
-        fee: {} 
+      deliver_tx: {
+        data: "MQ==",
+        gasUsed: "1000000",
+        fee: { key: "R2FzRmVl", value: "2000000000000000" }
       },
-      hash: '566E2FA6F87BD67A9D58590D641FE41BC5E4A43F',
-      height: 39 
-    }   
+      hash: "34B157D42AFF2D8327FC8CEA8DFFC1E61E9C0D93",
+      height: 105
+    }
     */
   } else {
     console.log(err)
     /*
     {
-      "check_tx": {
-        "code": 21,
-        "log": "Bad request",
-        "fee": {}
-      },
+      check_tx: { code: 21, log: "Bad request", fee: {} },
       deliver_tx: { fee: {} },
-      "hash": "F1DD77276ED876E97DB27BFD1EB7A3DAFF76DDAC",
-      "height": 0
+      hash: "ABAAB19BB229404EEF8D62FB9F5FC7C88C595A55",
+      height: 0
     }
     */
   }
@@ -511,32 +508,31 @@ A validator uses its new address to accept an account updating request.
 
 ```js
 var payload = {
-  from: "0x38d7b32e7b5056b297baf1a1e950abbaa19ce949",
+  from: "0x283ed77f880d87dbde8721259f80517a38ae5b4f",
   accountUpdateRequestId: 1
 }
 web3.cmt.stake.validator.acceptAccountUpdate(payload, (err, res) => {
   if (!err) {
     console.log(res)
     /*
-    { 
+    {
       check_tx: { fee: {} },
-      deliver_tx: { fee: {} },
-      hash: '3E1EE5FACD99E8B9B1E8AB0D5ECB3EEC2636DB89',
-      height: 67 
-    }   
+      deliver_tx: {
+        gasUsed: "1000000",
+        fee: { key: "R2FzRmVl", value: "2000000000000000" }
+      },
+      hash: "D343D115C152D1A78B7DB9CAA2160E3BA31A3F63",
+      height: 67
+    }
     */
   } else {
     console.log(err)
     /*
     {
-      "check_tx": {
-        "code": 20,
-        "log": "Insufficient bond shares",
-        "fee": {}
-      },
+      check_tx: { code: 20, log: "Insufficient bond shares", fee: {} },
       deliver_tx: { fee: {} },
-      "hash": "3E1EE5FACD99E8B9B1E8AB0D5ECB3EEC2636DB89",
-      "height": 0
+      hash: "D343D115C152D1A78B7DB9CAA2160E3BA31A3F63",
+      height: 0
     }
     */
   }
