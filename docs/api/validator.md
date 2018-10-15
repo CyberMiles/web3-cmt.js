@@ -96,9 +96,11 @@ Allows a validator candidate to change its candidacy.
   - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
   - `maxAmount`: `String` - (optional) New max amount of CMTs to be staked.
   - `description`: `Object` - (optional) When updated, the verified status will set to false:
+    - `name`: `String` - Validator name.
     - `website`: `String` - Web page link.
     - `location`: `String` - Location(network and geo).
-    - `details`: `String` - Other informations.
+    - `email`: `String` - Email.
+    - `profile`: `String` - Profile.
 
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
