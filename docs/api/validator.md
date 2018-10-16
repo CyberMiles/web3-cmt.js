@@ -23,9 +23,11 @@ Allows a potential validator declares its candidacy.
   - `compRate`: `String` - Validator compensation. That is the percentage of block awards to be distributed back to the validators.
   - `description`: `Object` - (optional) Description object as follows:
 
+    - `name`: `String` - Validator name.
     - `website`: `String` - Web page link.
     - `location`: `String` - Location(network and geo).
-    - `details`: `String` - Other informations.
+    - `email`: `String` - Email.
+    - `profile`: `String` - Detailed description.
 
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
@@ -100,7 +102,7 @@ Allows a validator candidate to change its candidacy.
     - `website`: `String` - Web page link.
     - `location`: `String` - Location(network and geo).
     - `email`: `String` - Email.
-    - `profile`: `String` - Profile.
+    - `profile`: `String` - Detailed description.
 
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
