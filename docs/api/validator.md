@@ -19,7 +19,7 @@ Allows a potential validator declares its candidacy.
   - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified. It will be associated with this validator (for self-staking and in order to get paid).
   - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
   - `pubKey`: `String` - Validator node public key.
-  - `maxAmount`: `String` - Max amount of CMTs to be staked.
+  - `maxAmount`: `String` - Max amount of CMTs in Wei to be staked.
   - `compRate`: `String` - Validator compensation. That is the percentage of block awards to be distributed back to the validators.
   - `description`: `Object` - (optional) Description object as follows:
 
@@ -96,7 +96,7 @@ Allows a validator candidate to change its candidacy.
 
   - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified.
   - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
-  - `maxAmount`: `String` - (optional) New max amount of CMTs to be staked.
+  - `maxAmount`: `String` - (optional) New max amount of CMTs in Wei to be staked.
   - `description`: `Object` - (optional) When updated, the verified status will set to false:
     - `name`: `String` - Validator name.
     - `website`: `String` - Web page link.
