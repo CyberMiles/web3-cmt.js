@@ -15191,6 +15191,11 @@ var methods = function() {
     params: 2,
     outputFormatter: formatters.outputTransactionFormatter
   })
+  var decodeRawTxs = new Method({
+    name: "decodeRawTxs",
+    call: "cmt_decodeRawTxs",
+    params: 1
+  })
 
   return [
     sendRawTx,
@@ -15199,7 +15204,8 @@ var methods = function() {
     sendRawTransaction,
     getCmtBlock,
     getCmtTransaction,
-    getCmtTransactionFromBlock
+    getCmtTransactionFromBlock,
+    decodeRawTxs
   ]
 }
 
