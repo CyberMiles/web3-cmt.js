@@ -96,7 +96,9 @@ Allows a validator candidate to change its candidacy.
 
   - `from`: `String` - The address for the sending account. Uses the `web3.cmt.defaultAccount` property, if not specified.
   - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+  - `pubKey`: `String` - (optional) Validator node public key.
   - `maxAmount`: `String` - (optional) New max amount of CMTs in Wei to be staked.
+  - `compRate`: `String` - (optional) Validator compensation. That is the percentage of block awards to be distributed back to the validators.
   - `description`: `Object` - (optional) When updated, the verified status will set to false:
     - `name`: `String` - Validator name.
     - `website`: `String` - Web page link.
@@ -330,6 +332,69 @@ web3.cmt.stake.validator.activate(payload, (err, res) => {
       "check_tx": {
         "code": 1,
         "log": "already activated",
+        "fee": {}
+      },
+      deliver_tx: { fee: {} },
+      "hash": "FB70A78AD62A0E0B24194CA951725770B2EFBC0A",
+      "height": 0
+    }
+    */
+  }
+})
+```
+
+---
+
+## deactivate
+
+```js
+web3.cmt.stake.validator.deactivate(validatorToActivate [, callback])
+```
+
+Allows a validator to deactivate itself.
+
+### Parameters
+
+- `validatorToDeactivate`: `Object` - The validator object to deactivate.
+
+  - `from`: `String` - The address for the validator. Uses the `web3.cmt.defaultAccount` property, if not specified.
+  - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
+
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
+
+### Returns
+
+- `Object` - Result object.
+
+  - `height`: `Number` - The block number where the transaction is in. =0 if failed.
+  - `hash`: `String` - Hash of the transaction.
+  - `check_tx`: `Object` - CheckTx result. Contains error code and log if failed.
+  - `deliver_tx`: `Object` - DeliverTx result. Contains error code and log if failed.
+
+### Example
+
+```js
+var payload = {
+  from: "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc"
+}
+web3.cmt.stake.validator.deactivate(payload, (err, res) => {
+  if (!err) {
+    console.log(res)
+    /*
+    {
+      check_tx: { fee: {} },
+      deliver_tx: { fee: {} },
+      hash: 'FB70A78AD62A0E0B24194CA951725770B2EFBC0A',
+      height: 393
+    }
+    */
+  } else {
+    console.log(err)
+    /*
+    {
+      "check_tx": {
+        "code": 1,
+        "log": "already deactivated",
         "fee": {}
       },
       deliver_tx: { fee: {} },
