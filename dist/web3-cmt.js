@@ -15498,6 +15498,12 @@ var methods = function() {
     params: 1,
     inputFormatter: [formatters.inputStakeTxFormatter]
   })
+  var deactivate = new Method({
+    name: "deactivate",
+    call: "cmt_deactivateCandidacy",
+    params: 1,
+    inputFormatter: [formatters.inputStakeTxFormatter]
+  })
   var updateAccount = new Method({
     name: "updateAccount",
     call: "cmt_updateCandidacyAccount",
@@ -15542,6 +15548,7 @@ var methods = function() {
     update,
     verify,
     activate,
+    deactivate,
     setCompRate,
     updateAccount,
     acceptAccountUpdate,
