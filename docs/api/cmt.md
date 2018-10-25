@@ -31,7 +31,7 @@ web3.cmt.syncing
 web3.cmt.getSyncing(callback(error, result){ ... })
 ```
 
-This property is read only and returns the sync object.
+This property is read only and returns the sync object. JSON RPC method: `cmt_syncing`.
 
 ### Returns
 
@@ -67,7 +67,7 @@ console.log(sync)
 web3.cmt.getCmtBlock(blockNumber [, callback])
 ```
 
-Returns a block matching the block number.
+Returns a block matching the block number. JSON RPC method: `cmt_getBlockByNumber`.
 
 #### Parameters
 
@@ -157,7 +157,7 @@ console.log(block)
 web3.cmt.getCmtTransaction(transactionHash [, callback])
 ```
 
-Returns a transaction matching the given transaction hash.
+Returns a transaction matching the given transaction hash. JSON RPC method: `cmt_getTransactionByHash`.
 
 #### Parameters
 
@@ -172,9 +172,7 @@ Returns a transaction matching the given transaction hash.
 
 ```js
 // eth compatible transaction
-var transaction = web3.cmt.getCmtTransaction(
-  "A3C6073BE1BE0E52B1333F467CF2FD23E96028C5"
-)
+var transaction = web3.cmt.getCmtTransaction("A3C6073BE1BE0E52B1333F467CF2FD23E96028C5")
 console.log(transaction)
 /*
 {
@@ -200,9 +198,7 @@ console.log(transaction)
 */
 
 // cmt transaction
-var transaction = web3.cmt.getCmtTransaction(
-  "E577068933111104EB5FA7927648A231FFFB96C6"
-)
+var transaction = web3.cmt.getCmtTransaction("E577068933111104EB5FA7927648A231FFFB96C6")
 console.log(transaction)
 /*
 {
@@ -252,7 +248,7 @@ console.log(transaction)
 web3.cmt.getCmtTransactionFromBlock(blockNumber, indexNumber [, callback])
 ```
 
-Returns a transaction based on a block hash or number and the transactions index position.
+Returns a transaction based on a block hash or number and the transactions index position. JSON RPC method: `cmt_getTransactionFromBlock`.
 
 #### Parameters
 

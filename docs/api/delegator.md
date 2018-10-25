@@ -10,7 +10,7 @@ The `web3.cmt.stake.delegator` contains all delegator related functions.
 web3.cmt.stake.delegator.accept(delegateObject [, callback])
 ```
 
-Used by a delegator to stake CMTs to a validator.
+Used by a delegator to stake CMTs to a validator. JSON RPC method: `cmt_delegate`.
 
 ### Parameters
 
@@ -122,7 +122,7 @@ console.log(signature_hex)
 web3.cmt.stake.delegator.withdraw(withdrawObject [, callback])
 ```
 
-Used by a delegator to unbind staked CMTs from a validator.
+Used by a delegator to unbind staked CMTs from a validator. JSON RPC method: `cmt_withdraw`.
 
 ### Parameters
 
@@ -185,7 +185,7 @@ web3.cmt.stake.delegator.withdraw(payload, (err, res) => {
 web3.cmt.stake.delegator.query(delegatorAddress [, height] [, callback])
 ```
 
-Query the current stake status of a specific delegator.
+Query the current stake status of a specific delegator. JSON RPC method: `cmt_queryDelegator`.
 
 ### Parameters
 
@@ -203,9 +203,7 @@ Query the current stake status of a specific delegator.
 ### Example
 
 ```js
-var info = web3.cmt.stake.delegator.query(
-  "0x3a436deae68b7d4c8ff9f1cb0498913a397472d7"
-)
+var info = web3.cmt.stake.delegator.query("0x3a436deae68b7d4c8ff9f1cb0498913a397472d7")
 console.log(JSON.stringify(info, null, 2))
 /*
 { 

@@ -10,7 +10,7 @@ The `web3.cmt.governance` module allows validators to vote on changes to the sys
 web3.cmt.governance.proposeRecoverFund(recoverFundObject [, callback])
 ```
 
-Propose a fund recovery proposal.
+Propose a fund recovery proposal. JSON RPC method: `cmt_proposeTransferFund`.
 
 ### Parameters
 
@@ -87,7 +87,7 @@ web3.cmt.governance.proposeRecoverFund(payload, (err, res) => {
 web3.cmt.governance.proposeChangeParam(changeParamObject [, callback])
 ```
 
-Propose a system parameter change.
+Propose a system parameter change. JSON RPC method: `cmt_proposeChangeParam`.
 
 ### Parameters
 
@@ -162,7 +162,7 @@ web3.cmt.governance.proposeChangeParam(payload, (err, res) => {
 web3.cmt.governance.proposeDeployLibEni(deployLibEniObject [, callback])
 ```
 
-Propose a new library for ENI.
+Propose a new library for ENI. JSON RPC method: `cmt_proposeDeployLibEni`.
 
 ### Parameters
 
@@ -245,7 +245,7 @@ web3.cmt.governance.proposeDeployLibEni(payload, (err, res) => {
 web3.cmt.governance.proposeRetireProgram(retireProgramObject [, callback])
 ```
 
-Propose to retire the program.
+Propose to retire the program. JSON RPC method: `cmt_proposeRetireProgram`.
 
 ### Parameters
 
@@ -318,7 +318,7 @@ web3.cmt.governance.proposeRetireProgram(payload, (err, res) => {
 web3.cmt.governance.proposeUpgradeProgram(upgradeProgramObject [, callback])
 ```
 
-Propose to upgrade the program. NOT IMPLEMENTED YET.
+Propose to upgrade the program. NOT IMPLEMENTED YET. JSON RPC method: `cmt_proposeUpgradeProgram`.
 
 ### Parameters
 
@@ -370,7 +370,9 @@ web3.cmt.governance.proposeUpgradeProgram(payload, (err, res) => {
 web3.cmt.governance.vote(voteObject [, callback])
 ```
 
-Vote on proposals of making changes to the system state. Here are some use cases:
+Vote on proposals of making changes to the system state. JSON RPC method: `cmt_vote`.
+
+Here are some use cases:
 
 - Vote to change system wide parameters such as the system inflation rate.
 - Vote to accept new native libraries for ENI.
@@ -437,7 +439,7 @@ web3.cmt.governance.vote(payload, (err, res) => {
 web3.cmt.governance.listProposals([callback])
 ```
 
-Returns a list of all proposals.
+Returns a list of all proposals. JSON RPC method: `cmt_queryProposals`.
 
 ### Parameters
 
@@ -507,7 +509,7 @@ console.log(JSON.stringify(info, null, 2))
 web3.cmt.governance.getParams([height] [,callback])
 ```
 
-Returns current settings of system parameters.
+Returns current settings of system parameters. JSON RPC method: `cmt_queryParams`.
 
 ### Parameters
 

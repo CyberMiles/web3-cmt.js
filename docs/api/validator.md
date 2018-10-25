@@ -10,7 +10,7 @@ The `web3.cmt.stake.validator` contains all validator related functions.
 web3.cmt.stake.validator.declare(validatorToDeclare [, callback])
 ```
 
-Allows a potential validator declares its candidacy.
+Allows a potential validator declares its candidacy. JSON RPC method: `cmt_declareCandidacy`.
 
 ### Parameters
 
@@ -88,7 +88,7 @@ web3.cmt.stake.validator.declare(payload, (err, res) => {
 web3.cmt.stake.validator.update(validatorToUpdate [, callback])
 ```
 
-Allows a validator candidate to change its candidacy.
+Allows a validator candidate to change its candidacy. JSON RPC method: `cmt_updateCandidacy`.
 
 ### Parameters
 
@@ -166,7 +166,7 @@ web3.cmt.stake.validator.update(payload, (err, res) => {
 web3.cmt.stake.validator.withdraw(validatorToWithdraw [, callback])
 ```
 
-Allows a validator to withdraw.
+Allows a validator to withdraw. JSON RPC method: `cmt_withdrawCandidacy`.
 
 ### Parameters
 
@@ -225,7 +225,7 @@ web3.cmt.stake.validator.withdraw(payload, (err, res) => {
 web3.cmt.stake.validator.verify(validatorToVerify [, callback])
 ```
 
-Allows the foundation to "verify" a validator's information.
+Allows the foundation to "verify" a validator's information. JSON RPC method: `cmt_verifyCandidacy`.
 
 ### Parameters
 
@@ -288,7 +288,7 @@ web3.cmt.stake.validator.verify(payload, (err, res) => {
 web3.cmt.stake.validator.activate(validatorToActivate [, callback])
 ```
 
-Allows a "removed" validator to re-activate itself.
+Allows a "removed" validator to re-activate itself. JSON RPC method: `cmt_activateCandidacy`.
 
 ### Parameters
 
@@ -351,7 +351,7 @@ web3.cmt.stake.validator.activate(payload, (err, res) => {
 web3.cmt.stake.validator.deactivate(validatorToActivate [, callback])
 ```
 
-Allows a validator to deactivate itself.
+Allows a validator to deactivate itself. JSON RPC method: `cmt_deactivateCandidacy`.
 
 ### Parameters
 
@@ -414,7 +414,7 @@ web3.cmt.stake.validator.deactivate(payload, (err, res) => {
 web3.cmt.stake.validator.setCompRate(compRate [, callback])
 ```
 
-Allows a validator to update the compensation rate for its delegators.
+Allows a validator to update the compensation rate for its delegators. JSON RPC method: `cmt_setCompRate`.
 
 ### Parameters
 
@@ -487,7 +487,7 @@ web3.cmt.stake.validator.compRate(payload, (err, res) => {
 web3.cmt.stake.validator.updateAccount(updateObject [, callback])
 ```
 
-A validator requests to update its binding address.
+A validator requests to update its binding address. JSON RPC method: `cmt_updateCandidacyAccount`.
 
 ### Parameters
 
@@ -552,7 +552,7 @@ web3.cmt.stake.validator.updateAccount(payload, (err, res) => {
 web3.cmt.stake.validator.acceptAccountUpdate(acceptObject [, callback])
 ```
 
-A validator uses its new address to accept an account updating request.
+A validator uses its new address to accept an account updating request. JSON RPC method: `cmt_acceptCandidacyAccountUpdate`.
 
 ### Parameters
 
@@ -616,7 +616,7 @@ web3.cmt.stake.validator.acceptAccountUpdate(payload, (err, res) => {
 web3.cmt.stake.validator.query(validatorAddress [, height] [, callback])
 ```
 
-Query the current stake status of a specific validator.
+Query the current stake status of a specific validator. JSON RPC method: `cmt_queryValidator`.
 
 ### Parameters
 
@@ -676,7 +676,7 @@ console.log(JSON.stringify(info, null, 2))
 web3.cmt.stake.validator.list([height] [, callback])
 ```
 
-Returns a list of all current validators and validator candidates.
+Returns a list of all current validators and validator candidates. JSON RPC method: `cmt_queryValidators`.
 
 ### Parameters
 
@@ -737,7 +737,7 @@ console.log(JSON.stringify(info, null, 2))
 web3.cmt.stake.validator.queryAwardInfos([height] [, callback])
 ```
 
-Returns award information of all current validators and backup validators.
+Returns award information of all current validators and backup validators. JSON RPC method: `cmt_queryAwardInfos`.
 
 ### Parameters
 
