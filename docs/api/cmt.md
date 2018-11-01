@@ -31,7 +31,7 @@ web3.cmt.syncing
 web3.cmt.getSyncing(callback(error, result){ ... })
 ```
 
-This property is read only and returns the sync object. JSON RPC method: `cmt_syncing`.
+This property is read only and returns the sync object. JSON RPC method: [cmt_syncing](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-syncing).
 
 ### Returns
 
@@ -67,7 +67,7 @@ console.log(sync)
 web3.cmt.getCmtBlock(blockNumber [, callback])
 ```
 
-Returns a block matching the block number. JSON RPC method: `cmt_getBlockByNumber`.
+Returns a block matching the block number. JSON RPC method: [cmt_getBlockByNumber](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-getblockbynumber).
 
 #### Parameters
 
@@ -157,7 +157,7 @@ console.log(block)
 web3.cmt.getCmtTransaction(transactionHash [, callback])
 ```
 
-Returns a transaction matching the given transaction hash. JSON RPC method: `cmt_getTransactionByHash`.
+Returns a transaction matching the given transaction hash. JSON RPC method: [cmt_getTransactionByHash](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-gettransactionbyhash).
 
 #### Parameters
 
@@ -248,7 +248,7 @@ console.log(transaction)
 web3.cmt.getCmtTransactionFromBlock(blockNumber, indexNumber [, callback])
 ```
 
-Returns a transaction based on a block hash or number and the transactions index position. JSON RPC method: `cmt_getTransactionFromBlock`.
+Returns a transaction based on a block hash or number and the transactions index position. JSON RPC method: [cmt_getTransactionFromBlock](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-gettransactionfromblock).
 
 #### Parameters
 

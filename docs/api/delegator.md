@@ -10,7 +10,7 @@ The `web3.cmt.stake.delegator` contains all delegator related functions.
 web3.cmt.stake.delegator.accept(delegateObject [, callback])
 ```
 
-Used by a delegator to stake CMTs to a validator. JSON RPC method: `cmt_delegate`.
+Used by a delegator to stake CMTs to a validator. JSON RPC method: [cmt_delegate](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-delegate).
 
 ### Parameters
 
@@ -122,7 +122,7 @@ console.log(signature_hex)
 web3.cmt.stake.delegator.withdraw(withdrawObject [, callback])
 ```
 
-Used by a delegator to unbind staked CMTs from a validator. JSON RPC method: `cmt_withdraw`.
+Used by a delegator to unbind staked CMTs from a validator. JSON RPC method: [cmt_withdraw](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-withdraw).
 
 ### Parameters
 
@@ -185,7 +185,7 @@ web3.cmt.stake.delegator.withdraw(payload, (err, res) => {
 web3.cmt.stake.delegator.query(delegatorAddress [, height] [, callback])
 ```
 
-Query the current stake status of a specific delegator. JSON RPC method: `cmt_queryDelegator`.
+Query the current stake status of a specific delegator. JSON RPC method: [cmt_queryDelegator](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-querydelegator).
 
 ### Parameters
 

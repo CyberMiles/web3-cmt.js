@@ -10,7 +10,7 @@ The `web3.cmt.governance` module allows validators to vote on changes to the sys
 web3.cmt.governance.proposeRecoverFund(recoverFundObject [, callback])
 ```
 
-Propose a fund recovery proposal. JSON RPC method: `cmt_proposeTransferFund`.
+Propose a fund recovery proposal. JSON RPC method: [cmt_proposeTransferFund](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-proposetransferfund).
 
 ### Parameters
 
@@ -87,7 +87,7 @@ web3.cmt.governance.proposeRecoverFund(payload, (err, res) => {
 web3.cmt.governance.proposeChangeParam(changeParamObject [, callback])
 ```
 
-Propose a system parameter change. JSON RPC method: `cmt_proposeChangeParam`.
+Propose a system parameter change. JSON RPC method: [cmt_proposeChangeParam](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-proposechangeparam).
 
 ### Parameters
 
@@ -162,7 +162,7 @@ web3.cmt.governance.proposeChangeParam(payload, (err, res) => {
 web3.cmt.governance.proposeDeployLibEni(deployLibEniObject [, callback])
 ```
 
-Propose a new library for ENI. JSON RPC method: `cmt_proposeDeployLibEni`.
+Propose a new library for ENI. JSON RPC method: [cmt_proposeDeployLibEni](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-proposedeploylibeni).
 
 ### Parameters
 
@@ -245,7 +245,7 @@ web3.cmt.governance.proposeDeployLibEni(payload, (err, res) => {
 web3.cmt.governance.proposeRetireProgram(retireProgramObject [, callback])
 ```
 
-Propose to retire the program. JSON RPC method: `cmt_proposeRetireProgram`.
+Propose to retire the program. JSON RPC method: [cmt_proposeRetireProgram](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-proposeretireprogram).
 
 ### Parameters
 
@@ -318,7 +318,7 @@ web3.cmt.governance.proposeRetireProgram(payload, (err, res) => {
 web3.cmt.governance.proposeUpgradeProgram(upgradeProgramObject [, callback])
 ```
 
-Propose to upgrade the program. NOT IMPLEMENTED YET. JSON RPC method: `cmt_proposeUpgradeProgram`.
+Propose to upgrade the program. NOT IMPLEMENTED YET. JSON RPC method: [cmt_proposeUpgradeProgram](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-proposeupgradeprogram).
 
 ### Parameters
 
@@ -370,7 +370,7 @@ web3.cmt.governance.proposeUpgradeProgram(payload, (err, res) => {
 web3.cmt.governance.vote(voteObject [, callback])
 ```
 
-Vote on proposals of making changes to the system state. JSON RPC method: `cmt_vote`.
+Vote on proposals of making changes to the system state. JSON RPC method: [cmt_vote](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-vote).
 
 Here are some use cases:
 
@@ -439,7 +439,7 @@ web3.cmt.governance.vote(payload, (err, res) => {
 web3.cmt.governance.listProposals([callback])
 ```
 
-Returns a list of all proposals. JSON RPC method: `cmt_queryProposals`.
+Returns a list of all proposals. JSON RPC method: [cmt_queryProposals](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-queryproposals).
 
 ### Parameters
 
@@ -509,7 +509,7 @@ console.log(JSON.stringify(info, null, 2))
 web3.cmt.governance.getParams([height] [,callback])
 ```
 
-Returns current settings of system parameters. JSON RPC method: `cmt_queryParams`.
+Returns current settings of system parameters. JSON RPC method: [cmt_queryParams](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-queryparams).
 
 ### Parameters
 

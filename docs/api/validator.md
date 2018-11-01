@@ -10,7 +10,7 @@ The `web3.cmt.stake.validator` contains all validator related functions.
 web3.cmt.stake.validator.declare(validatorToDeclare [, callback])
 ```
 
-Allows a potential validator declares its candidacy. JSON RPC method: `cmt_declareCandidacy`.
+Allows a potential validator declares its candidacy. JSON RPC method: [cmt_declareCandidacy](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-declarecandidacy).
 
 ### Parameters
 
@@ -88,7 +88,7 @@ web3.cmt.stake.validator.declare(payload, (err, res) => {
 web3.cmt.stake.validator.update(validatorToUpdate [, callback])
 ```
 
-Allows a validator candidate to change its candidacy. JSON RPC method: `cmt_updateCandidacy`.
+Allows a validator candidate to change its candidacy. JSON RPC method: [cmt_updateCandidacy](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-updatecandidacy).
 
 ### Parameters
 
@@ -166,7 +166,7 @@ web3.cmt.stake.validator.update(payload, (err, res) => {
 web3.cmt.stake.validator.withdraw(validatorToWithdraw [, callback])
 ```
 
-Allows a validator to withdraw. JSON RPC method: `cmt_withdrawCandidacy`.
+Allows a validator to withdraw. JSON RPC method: [cmt_withdrawCandidacy](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-withdrawcandidacy).
 
 ### Parameters
 
@@ -225,7 +225,7 @@ web3.cmt.stake.validator.withdraw(payload, (err, res) => {
 web3.cmt.stake.validator.verify(validatorToVerify [, callback])
 ```
 
-Allows the foundation to "verify" a validator's information. JSON RPC method: `cmt_verifyCandidacy`.
+Allows the foundation to "verify" a validator's information. JSON RPC method: [cmt_verifyCandidacy](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-verifycandidacy).
 
 ### Parameters
 
@@ -288,7 +288,7 @@ web3.cmt.stake.validator.verify(payload, (err, res) => {
 web3.cmt.stake.validator.activate(validatorToActivate [, callback])
 ```
 
-Allows a "removed" validator to re-activate itself. JSON RPC method: `cmt_activateCandidacy`.
+Allows a "removed" validator to re-activate itself. JSON RPC method: [cmt_activateCandidacy](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-activatecandidacy).
 
 ### Parameters
 
@@ -351,7 +351,7 @@ web3.cmt.stake.validator.activate(payload, (err, res) => {
 web3.cmt.stake.validator.deactivate(validatorToActivate [, callback])
 ```
 
-Allows a validator to deactivate itself. JSON RPC method: `cmt_deactivateCandidacy`.
+Allows a validator to deactivate itself. JSON RPC method: [cmt_deactivateCandidacy](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-deactivatecandidacy).
 
 ### Parameters
 
@@ -414,7 +414,7 @@ web3.cmt.stake.validator.deactivate(payload, (err, res) => {
 web3.cmt.stake.validator.setCompRate(compRate [, callback])
 ```
 
-Allows a validator to update the compensation rate for its delegators. JSON RPC method: `cmt_setCompRate`.
+Allows a validator to update the compensation rate for its delegators. JSON RPC method: [cmt_setCompRate](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-setcomprate).
 
 ### Parameters
 
@@ -487,7 +487,7 @@ web3.cmt.stake.validator.compRate(payload, (err, res) => {
 web3.cmt.stake.validator.updateAccount(updateObject [, callback])
 ```
 
-A validator requests to update its binding address. JSON RPC method: `cmt_updateCandidacyAccount`.
+A validator requests to update its binding address. JSON RPC method: [cmt_updateCandidacyAccount](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-updatecandidacyaccount).
 
 ### Parameters
 
@@ -552,7 +552,7 @@ web3.cmt.stake.validator.updateAccount(payload, (err, res) => {
 web3.cmt.stake.validator.acceptAccountUpdate(acceptObject [, callback])
 ```
 
-A validator uses its new address to accept an account updating request. JSON RPC method: `cmt_acceptCandidacyAccountUpdate`.
+A validator uses its new address to accept an account updating request. JSON RPC method: [cmt_acceptCandidacyAccountUpdate](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-acceptcandidacyaccountupdate).
 
 ### Parameters
 
@@ -616,7 +616,7 @@ web3.cmt.stake.validator.acceptAccountUpdate(payload, (err, res) => {
 web3.cmt.stake.validator.query(validatorAddress [, height] [, callback])
 ```
 
-Query the current stake status of a specific validator. JSON RPC method: `cmt_queryValidator`.
+Query the current stake status of a specific validator. JSON RPC method: [cmt_queryValidator](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-queryvalidator).
 
 ### Parameters
 
@@ -676,7 +676,7 @@ console.log(JSON.stringify(info, null, 2))
 web3.cmt.stake.validator.list([height] [, callback])
 ```
 
-Returns a list of all current validators and validator candidates. JSON RPC method: `cmt_queryValidators`.
+Returns a list of all current validators and validator candidates. JSON RPC method: [cmt_queryValidators](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-queryvalidators).
 
 ### Parameters
 
@@ -737,7 +737,7 @@ console.log(JSON.stringify(info, null, 2))
 web3.cmt.stake.validator.queryAwardInfos([height] [, callback])
 ```
 
-Returns award information of all current validators and backup validators. JSON RPC method: `cmt_queryAwardInfos`.
+Returns award information of all current validators and backup validators. JSON RPC method: [cmt_queryAwardInfos](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-queryawardinfos).
 
 ### Parameters
 
