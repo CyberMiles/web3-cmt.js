@@ -15196,6 +15196,11 @@ var methods = function() {
     call: "cmt_decodeRawTxs",
     params: 1
   })
+  var getCmtTransactionsFromBlock = new Method({
+    name: "getCmtTransactionsFromBlock",
+    call: "cmt_getBlockTxs",
+    params: 1
+  })
 
   return [
     sendRawTx,
@@ -15205,7 +15210,8 @@ var methods = function() {
     getCmtBlock,
     getCmtTransaction,
     getCmtTransactionFromBlock,
-    decodeRawTxs
+    decodeRawTxs,
+    getCmtTransactionsFromBlock
   ]
 }
 
