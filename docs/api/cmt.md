@@ -331,3 +331,79 @@ console.log(transaction)
 }
 */
 ```
+
+---
+
+## web3.cmt.pendingTransactionCount
+
+```js
+web3.cmt.pendingTransactionCount
+// or async
+web3.cmt.getPendingTransactionCount(callback(error, result){ ... })
+```
+
+This property is read only and returns the number of unconfirmed transactions in the mempool. JSON RPC method: [cmt_pendingTransactionCount](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-pendingTransactionCount).
+
+### Returns
+
+- Number - The number of unconfirmed transactions in the mempool.
+
+### Example
+
+```js
+var count = web3.cmt.pendingTransactionCount
+console.log(count)
+/*
+1
+*/
+```
+
+---
+
+## web3.cmt.getPendingTransactions
+
+```js
+web3.cmt.getPendingTransactions([limit], [callback])
+```
+
+Get unconfirmed transactions in the mempool. JSON RPC method: [cmt_getPendingTransactions](https://travis.readthedocs.io/en/latest/json-rpc.html#cmt-getPendingTransactions).
+
+#### Parameters
+
+- `limit`: `Number` - (optional) The maximum number of transactions returned in the response body. Default: 30, maximum: 100.
+- `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks)
+
+### Returns
+
+- Object - An array of unconfirmed transaction objects in the mempool.
+
+### Example
+
+```js
+var txs = web3.cmt.getPendingTransactions()
+console.log(JSON.stringify(txs, null, 2))
+/*
+[
+  {
+    "blockNumber": 0,
+    "from": "0x7eff122b94897ea5b0e2a9abf47b86337fafebdc",
+    "gas": 90000,
+    "gasPrice": "0",
+    "hash": "0x1d58d5d58f9432b52bab593da7d83e3fa2aaf309879ac7693744f3bbaf90aa46",
+    "cmtHash": "",
+    "input": "0x",
+    "cmtInput": null,
+    "nonce": 10,
+    "to": "0x38d7b32e7b5056b297baf1a1e950abbaa19ce948",
+    "transactionIndex": 0,
+    "value": "62437500000000000000",
+    "v": "0x9c8",
+    "r": "0x1893ac16bd96f64ab8d6eceae7c2d48287700747e33d9f2ed6846afa86e5d47b",
+    "s": "0x78df5b10d4388f7f64e73a3d42f16af03525d240d7b9821b38d7ec79736c9536",
+    "txResult": {
+      "fee": {}
+    }
+  }
+]
+*/
+```

@@ -21,9 +21,8 @@ var Cmt = function(web3) {
     p.setRequestManager(self._requestManager)
   })
 
-  // isSyncing/getSyncing are not supported
+  // eth.isSyncing is not supported
   delete this.isSyncing
-  delete this.getSyncing
 
   // restore the original defineProperty
   Object.defineProperty = _defineProperty
@@ -90,6 +89,17 @@ var methods = function() {
     call: "cmt_decodeRawTxs",
     params: 1
   })
+  var getPendingTransactions = new Method({
+    name: "getPendingTransactions",
+    call: "cmt_getPendingTransactions",
+    params: 1,
+    inputFormatter: [
+      function(val) {
+        return val || 0
+      }
+    ],
+    outputFormatter: formatters.outputTransactionsFormatter
+  })
 
   return [
     sendRawTx,
@@ -99,7 +109,8 @@ var methods = function() {
     getCmtBlock,
     getCmtTransaction,
     getCmtTransactionFromBlock,
-    decodeRawTxs
+    decodeRawTxs,
+    getPendingTransactions
   ]
 }
 
@@ -108,6 +119,11 @@ var properties = function() {
     new Property({
       name: "syncing",
       getter: "cmt_syncing"
+    }),
+    new Property({
+      name: "pendingTransactionCount",
+      getter: "cmt_pendingTransactionCount",
+      outputFormatter: utils.toDecimal
     })
   ]
 }

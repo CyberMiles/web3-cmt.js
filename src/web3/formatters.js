@@ -2,14 +2,14 @@ var formatters = require("web3/lib/web3/formatters")
 var utils = require("web3/lib/utils/utils")
 var config = require("web3/lib/utils/config")
 
-inputDefaultHeightFormatter = function(height) {
+var inputDefaultHeightFormatter = function(height) {
   if (height === undefined) {
     return 0
   }
   return height
 }
 
-inputStakeTxFormatter = function(options) {
+var inputStakeTxFormatter = function(options) {
   options.from = options.from || config.defaultAccount
   options.from = formatters.inputAddressFormatter(options.from)
 
@@ -37,7 +37,17 @@ inputStakeTxFormatter = function(options) {
   return options
 }
 
+var outputTransactionsFormatter = function(txs) {
+  if (utils.isArray(txs)) {
+    txs.forEach(function(item) {
+      if (!utils.isString(item)) return formatters.outputTransactionFormatter(item)
+    })
+  }
+  return txs
+}
+
 formatters.inputDefaultHeightFormatter = inputDefaultHeightFormatter
 formatters.inputStakeTxFormatter = inputStakeTxFormatter
+formatters.outputTransactionsFormatter = outputTransactionsFormatter
 
 module.exports = formatters
