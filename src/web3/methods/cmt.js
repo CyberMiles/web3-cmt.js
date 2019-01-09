@@ -8,7 +8,18 @@ var Governance = require("./governance.js")
 
 // inherit and extend Eth
 var Cmt = function(web3) {
+  // make override properties configurable
+  var _defineProperty = Object.defineProperty
+  Object.defineProperty = function(obj, prop, descriptor) {
+    if (obj instanceof Cmt && props.indexOf(prop) > -1) {
+      descriptor.configurable = true
+    }
+    return _defineProperty(obj, prop, descriptor)
+  }
+  // call Eth constructor
   Eth.call(this, web3)
+  // restore the original defineProperty
+  Object.defineProperty = _defineProperty
 
   var self = this
   methods().forEach(function(method) {
@@ -23,9 +34,6 @@ var Cmt = function(web3) {
 
   // eth.isSyncing is not supported
   delete this.isSyncing
-
-  // restore the original defineProperty
-  Object.defineProperty = _defineProperty
 
   this.stake = new Stake(this)
   this.governance = new Governance(this)
@@ -137,15 +145,8 @@ var properties = function() {
 }
 
 // make override properties configurable
-var _defineProperty = Object.defineProperty
 var props = properties().map(function(p) {
   return p.name
 })
-Object.defineProperty = function(obj, prop, descriptor) {
-  if (obj instanceof Cmt && props.indexOf(prop) > -1) {
-    descriptor.configurable = true
-  }
-  return _defineProperty(obj, prop, descriptor)
-}
 
 module.exports = Cmt
