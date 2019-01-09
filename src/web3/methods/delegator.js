@@ -1,5 +1,3 @@
-var utils = require("web3/lib/utils/utils")
-var Property = require("web3/lib/web3/property")
 var Method = require("web3/lib/web3/method")
 var formatters = require("../formatters")
 
@@ -36,10 +34,7 @@ var methods = function() {
     name: "query",
     call: "cmt_queryDelegator",
     params: 2,
-    inputFormatter: [
-      formatters.inputAddressFormatter,
-      formatters.inputDefaultHeightFormatter
-    ]
+    inputFormatter: [formatters.inputAddressFormatter, formatters.inputDefaultHeightFormatter]
   })
   return [accept, withdraw, query]
 }

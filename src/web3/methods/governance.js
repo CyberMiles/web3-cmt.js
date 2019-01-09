@@ -1,5 +1,3 @@
-var utils = require("web3/lib/utils/utils")
-var Property = require("web3/lib/web3/property")
 var Method = require("web3/lib/web3/method")
 var formatters = require("../formatters")
 

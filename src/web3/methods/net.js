@@ -1,7 +1,6 @@
 var Net = require("web3/lib/web3/methods/net")
 var Property = require("web3/lib/web3/property")
 var utils = require("web3/lib/utils/utils")
-var formatters = require("../formatters")
 
 // inherit and extend Net
 var MyNet = function(web3) {
