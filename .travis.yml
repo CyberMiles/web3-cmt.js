@@ -1,15 +1,15 @@
 language: node_js
 node_js:
-- '8'
+  - "8"
 cache:
   directories:
-  - node_modules
+    - node_modules
 script:
-- npm run docs:build
+  - npm run docs:build
 deploy:
   - provider: pages
     skip-cleanup: true
-    github-token: "$GITHUB_TOKEN"
+    github-token: $GITHUB_TOKEN
     keep-history: false
     local-dir: docs/.vuepress/dist
     target-branch: gh-pages
@@ -17,8 +17,6 @@ deploy:
       branch: master
   - provider: npm
     email: maggie@5milesapp.com
-    api_key:
-      secure: ib8mTbPUMVz9al3NV22ZfYOHtV/M4Mef9+5znVyiXYSbmW/UdZJwMPwD2lFkF/dl20tCD7ROm1a4wwLLYoRR9Qif0A7PGCKhpFTqr83AyZtcgGYzBLdQOoL0QtTU9+R+PMDs0j7J0I+rGbnTg4oDf2DRYfc6B3KZr/oOQ+Od5KvFzK3xVBG52JGbz9CTJ56vkWGvUReeD2Opz3Yi1BMUsuLZwxOaRg04NJ0WEDz98PBOMxDAQIStL6cyZo6sFt2vmY0AJaSNIxDfYfJaqbCLoeZDWEgAFj0YFf+13YpI/GWP8Zo7XZ+odI4KU6p9QmV9sa5Mfb4bt6M5N0KRjvVYnsdAWTp0n0/UK18PQIN2yPZlMz/ilfGx64Yc+ufwrUkdfPzj7av8OXsRT/c0pH6n2BPbFV98pf5jlGe43jvsPmZ03HzuhwtTX5Ak5+2zdCwQHSTfufZJGMWguYTdXd3heqB5ACNAnj2sh6NkmGHFIVMUvpjLmWRV3tcw7WjwKoOZvdar9R1lCBqDqoy+W5csnk8zc4aTdEy9SjNl+tMAQHQW18zWDW1t5Ri5Ens4T9P+Im1sCCSgpyUjlArSA970ZrGj9zH6g10+VnvDj3aZG9I11ePDjLqJzu47ejzrfOajqgRejKxBO4XlVcRPx7d4QTLsdJWrFwK9tp49ExNsho0=
+    api_key: $NPM_TOKEN
     on:
       tags: true
-      repo: CyberMiles/web3-cmt.js
