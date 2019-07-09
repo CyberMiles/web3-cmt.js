@@ -20,8 +20,8 @@ Used by a delegator to stake CMTs to a validator. JSON RPC method: [cmt_delegate
   - `nonce`: `Number` - (optional) The number of transactions made by the sender prior to this one.
   - `validatorAddress`: `String` - The address of validator to delegate.
   - `amount`: `String` - Amount of CMTs in Wei to delegate.
-  - `cubeBatch`: `String` - The batch number of the CMT cube. Use "01" for testing.
-  - `sig`: `String` - `delegator_address|nonce` signed by the CMT cube. Check [this](#cube-signature) for how to generate a signature for testing.
+  - `cubeBatch`: `String` - (optional) The batch number of the CMT cube. Use "01" for testing.
+  - `sig`: `String` - (optional) `delegator_address|nonce` signed by the CMT cube. Check [this](#cube-signature) for how to generate a signature for testing.
 
 - `callback`: `Function` - (optional) If you pass a callback the HTTP request is made asynchronous. See [this note](https://github.com/ethereum/wiki/wiki/JavaScript-API#using-callbacks) for details.
 
