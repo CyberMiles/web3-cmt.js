@@ -18,7 +18,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "async": "^2.6.0",
+    "async": "^2.6.4",
     "browserify": "^16.1.1",
     "chai": "^4.1.2",
     "chai-subset": "^1.6.0",
